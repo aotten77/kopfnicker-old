@@ -13,11 +13,11 @@ git checkout master
 
 // wenn im repo describer-core Änderungen committed werden, sind diese mit folgenden git-befehl in den master zu mergen. (Hierzu muss man den master ausgecheckt haben)
 
-git merge --squash -s subtree --no-commit describer-core_branch
+git merge --squash -s subtree --no-commit describer-core_master
 
 // wenn man Änderungen im master unter /js/describer-core durchgeführt hat, sind diese mit fogenden git-befehl in den branch vom repo describer-core zu mergen. (Hierzu muss man den branch describer-core_branch ausgecheckt haben)
 
-git checkout describer-core_branch
+git checkout describer-core_master
 git merge --squash -s subtree --no-commit master
 
 
