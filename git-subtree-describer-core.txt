@@ -1,23 +1,30 @@
-git remote add describer-core_remote https://github.com/describerjs/describer-core.git
+1. git remote add describer-core_remote https://github.com/describerjs/describer-core.git
 
-git fetch describer-core_remote
+2. git fetch describer-core_remote
 
-git checkout -b describer-core_master describer-core_remote/master
+3. git checkout -b subtree/describer-core/master describer-core_remote/master
 
-git checkout master
+4. git checkout master
 
-git read-tree --prefix=js/describer-core -u describer-core_master
+//  wenn noch kein js/describer-core existiert, werden die datein mit folgenden git-befehl vom subtree/describer-core/master in den js/describer-core geholt.
 
-git checkout master
+5.a git read-tree --prefix=js/describer-core -u subtree/describer-core/master (nur initial, wenn der ordner js/describer-core noch nicht existiert. sonst schritt 7)
 
+//  ist der Ordner schon existent, werden die Datein im js/describer-core mit folgendem git-befehl aktualisiert.
+5.b git merge --squash -s subtree --no-commit subtree/describer-core/master
 
-// wenn im repo describer-core Änderungen committed werden, sind diese mit folgenden git-befehl in den master zu mergen. (Hierzu muss man den master ausgecheckt haben)
+6. git checkout master
 
-git merge --squash -s subtree --no-commit describer-core_master
+// wenn im repo describer-core Änderungen durchgeführt wurden, können sie mit dem folgenden git-befehl geholt werden.
+8. git checkout subtree/describer-core/master
+9. git pull
 
-// wenn man Änderungen im master unter /js/describer-core durchgeführt hat, sind diese mit fogenden git-befehl in den branch vom repo describer-core zu mergen. (Hierzu muss man den branch describer-core_branch ausgecheckt haben)
+// die Änderungen können jetzt wieder mit schirtt 5.b in den master gemergt werden. (zuvor bitte erst wieder in den master auschecken schritt 4)
 
-git checkout describer-core_master
+// wenn man Änderungen im master unter /js/describer-core durchgeführt hat, sind diese mit fogenden git-befehl in den branch subtree/describer-core/master vom repo describer-core zu mergen. (Hierzu muss man den branch subtree/describer-core/master ausgecheckt haben)
+
+git checkout subtree/describer-core/master
+
 git merge --squash -s subtree --no-commit master
 
 
