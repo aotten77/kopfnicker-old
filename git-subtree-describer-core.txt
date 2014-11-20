@@ -1,0 +1,38 @@
+git remote add describer-core_remote https://aotten77@github.com/describerjs/describer-core.git
+
+git fetch describer-core_remote
+
+git checkout -b describer-core_master describer-core_remote/master
+
+git checkout master
+
+git read-tree --prefix=js/describer-core -u describer-core_master
+
+git checkout master
+
+
+// wenn im repo describer-core Änderungen committed werden, sind diese mit folgenden git-befehl in den master zu mergen. (Hierzu muss man den master ausgecheckt haben)
+
+git merge --squash -s subtree --no-commit describer-core_branch
+
+// wenn man Änderungen im master unter /js/describer-core durchgeführt hat, sind diese mit fogenden git-befehl in den branch vom repo describer-core zu mergen. (Hierzu muss man den branch describer-core_branch ausgecheckt haben)
+
+git checkout describer-core_branch
+git merge --squash -s subtree --no-commit master
+
+
+
+// ende
+
+
+
+
+
+
+
+
+git diff-tree -p declareIt-localStorage_branch
+
+
+Man kann aber auch genau das Gegenteil machen: Man führt Änderungen im Unterverzeichnis declareIt-localStorage des Branches master aus und mergt diese dann später in den Zweig declareIt-localStorage_branch.
+

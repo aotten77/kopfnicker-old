@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html class="no-js" lang="de">
+<head>
+	<title>DEMO</title>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="description" content="" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+	<link rel="shortcut icon" href="/favicon/favicon.ico" />
+	<link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png" />
+	<link rel="apple-touch-icon" href="/favicon/apple-touch-icon-72x72.png" sizes="72x72" />
+	<link rel="apple-touch-icon" href="/favicon/apple-touch-icon-114x114.png" sizes="114x114" />
+	<link rel="apple-touch-icon-precomposed" href="/favicon/apple-touch-icon-144x144-precomposed.png" sizes="144x144" />
+	<link rel="apple-touch-icon-precomposed" href="/favicon/apple-touch-icon-114x114-precomposed.png" sizes="114x114" />
+	<link rel="apple-touch-icon-precomposed" href="/favicon/apple-touch-icon-72x72-precomposed.png" sizes="72x72" />
+	<link rel="apple-touch-icon-precomposed" href="/favicon/apple-touch-icon-57x57-precomposed.png" />
+	<meta name="msapplication-TileImage" content="/favicon/ms-touch-icon-144x144-precomposed.png" />
+	<meta name="msapplication-TileColor" content="#222222" />
+
+	<script src="/js/describer-core/libs/modernizr.custom.js"></script>
+	<script src="/js/describer-core/libs/matchmedia.js"></script>
+	<script src="/js/describer-core/libs/jquery.onDomOrAjaxReady.js"></script>
+	
+	<link rel="stylesheet" href="/css/style.css" />
+	
+	<script src="/js/describer-core/libs/require.2.1.11.js" data-main="/js/describer-core/main-core"></script>
+</head>
+
+<body>
+<div class="page">
+	<header class="page-header" role="banner">
+		<a class="logo" href="/"><img src="//dummyimage.com/270x70/ddd/000.png&text=DEMO" alt="DEMO" /></a>
+		<nav class="nav" id="nav" role="navigation">
+			<a href="#nav" class="menu-btn" data-jmname="nav">Menu</a>
+			<ul class="nav-items">
+				<li class="nav-item menu-item">
+					<a href="#UI-Elemente" class="nav-link" data-jmname="nav-link" data-jmdominit="true">UI-Elemente</a>
+					<div class="flyout">
+						<div class="flyout-group">
+							<div class="flyout-item"><a class="flyout-group-title" href="#UI-Elemente-Accordion">Accordion</a></div>
+                        </div>
+                        <div class="flyout-group">
+                            <div class="flyout-item"><a class="flyout-group-title" href="#UI-Elemente-Back-To-Top">Back-To-Top</a></div>
+                        </div>
+                        <div class="flyout-group">
+                            <div class="flyout-item"><a class="flyout-group-title" href="#UI-Elemente-Togglebox">Togglebox</a></div>
+						</div>
+					</div>
+				</li>
+				
+                <li class="nav-item menu-item">
+                    <a href="#Display-comment-html-on-condition" class="nav-link" data-jmdominit="true">Display-Comment</a>
+                </li>
+			</ul>
+		</nav>
+	</header>
+	<main class="page-main" role="main">
+		<h2 id="UI-Elemente">UI-Elemente</h2>
+        <div class="demo-section">
+    		<div class="block" id="UI-Elemente-Accordion">
+                <section class="block-content">
+        			<h3>Accordion</h3>
+        			<p>Ziehharmonika Effekt</p>
+                </section>
+    		</div>
+    		<div class="togglebox">
+    			<a class="tb-subject" href="#" data-jmname="togglebox">Demo</a>
+    			<div class="tb-content">
+    				<div class="accordion">
+    					<ul class="acc-group">
+    						<li class="acc-item">
+    							<a class="acc-handle" data-jmname="accordionbox" href="#">Lorem Accordion</a>
+    							<section class="acc-panel">
+    								<h5>Lorem Accordion</h5>
+    								<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+    							</section>
+    						</li>
+    						<li class="acc-item">
+    							<a class="acc-handle" data-jmname="accordionbox" data-jmconfig="[{ 'url': '/ajax-html.html' }, {}, {}]" href="#">Ipsum Accordion (ajax)</a>
+    							<section class="acc-panel"></section>
+    						</li>
+    						<li class="acc-item">
+    							<a class="acc-handle" data-jmname="accordionbox" href="#">Dolor Accordion</a>
+    							<section class="acc-panel">
+    								<h5>Dolor Accordion</h5>
+    								<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+    							</section>
+    						</li>
+    						<li class="acc-item">
+    							<a class="acc-handle" data-jmname="accordionbox" href="#">Sit amet Accordion</a>
+    							<section class="acc-panel">
+    								<h5>Sit amet Accordion</h5>
+    								<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+    							</section>
+    						</li>
+    						<li class="acc-item">
+    							<a class="acc-handle" data-jmname="accordionbox" href="#">Consetetur Accordion</a>
+    							<section class="acc-panel">
+    								<h5>Consetetur Accordion</h5>
+    								<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+    							</section>
+    						</li>
+    					</ul>
+    				</div>
+                </div>
+            </div>
+            <div class="block" id="UI-Elemente-Back-To-Top">
+                <section class="block-content">
+                    <h3>Back-To-Top</h3>
+                    <p>Button scrollt die Seite nach oben</p>
+                </section>
+            </div>
+            <div class="togglebox">
+                <a class="tb-subject" href="#" data-jmname="togglebox">Demo</a>
+                <div class="tb-content">
+                    <section class="block" data-jmselector="equal-heights-children">
+                        <div class="block-content">
+                            <a class="back-to-top" href="#" data-jmname="back-to-top">Zurück nach oben</a>
+                        </div>
+                    </section>
+                </div>
+            </div>
+    		<div class="block" id="UI-Elemente-Togglebox">
+                <section class="block-content">
+        			<h3>Togglebox</h3>
+        			<p>Auf-/Zuklapp-Element</p>
+                </section>
+    		</div>
+    		<div class="togglebox">
+    			<a class="tb-subject" href="#" data-jmname="togglebox">Demo</a>
+    			<div class="tb-content">
+    				<div class="togglebox">
+    					<a class="tb-subject" href="#" data-jmname="togglebox">Lorem ipsum dolor</a>
+    					<div class="tb-content">
+    						<h5>Lorem ipsum dolor sit amet</h5>
+    						<p>Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+    					</div>
+    				</div>
+                    <div class="togglebox">
+                        <a class="tb-subject" href="#" data-jmname="togglebox" data-jmconfig="[{'url': '/ajax-html.html'}, {}]">Lorem ipsum dolor (ajax)</a>
+                        <div class="tb-content"></div>
+                    </div>
+    			</div>
+    		</div>
+    		<div class="block" id="Display-comment-html-on-condition">
+                <section class="block-content">
+        			<h3>Display-Comment</h3>
+        			<p>Display comment HTML on condition -> Modernizr.mq(\'only screen and (min-width : 60em)\'))</p>
+                </section>
+    		</div>
+    		<div class="togglebox">
+    			<a class="tb-subject" href="#" data-jmname="togglebox">Demo</a>
+    			<div class="tb-content">
+    				<div>Show on any device</div>
+    				<div data-jmname="show-html-comment-only-desktop" data-jmdominit="true">
+    					<!-- comment in by JS <div>Show on desktop</div>-->
+    				</div>
+    			</div>
+    		</div>
+
+        </div>
+        <div class="demo-section">
+        	<div class="block" id="UI-Elemente-Accordion">
+        	Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.   
+
+Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.   
+
+Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.   
+
+Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.   
+
+Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.   
+
+At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, At accusam aliquyam diam diam dolore dolores duo eirmod eos erat, et nonumy sed tempor et et invidunt justo labore Stet clita ea et gubergren, kasd magna no rebum. sanctus sea sed takimata ut vero voluptua. est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.   
+
+Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus.   
+
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.   
+
+Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.   
+
+Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.   
+
+Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo</div>
+        </div>
+	</main>
+    <footer class="page-footer" role="contentinfo">
+        <a class="back-to-top" href="#" data-jmname="back-to-top">Zurück nach oben</a>
+	</footer>
+</div>
+</body>
+
+</html>
