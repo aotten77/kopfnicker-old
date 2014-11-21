@@ -14,6 +14,12 @@ if('querySelector' in document && 'localStorage' in window && 'addEventListener'
 require.config({
 	baseUrl: '/js',
 	paths      : {
+		'_config'                                          : 'describer-config',
+
+		// core
+		'_super'                                           : 'describer-core/_super',
+		'core'                                             : 'describer-core/core'
+
 		// libs
 		'jquery'                                           : pathToJQuery,
 		'scrolltotop'                                      : 'describer-core/libs/scrolltotop',
@@ -28,11 +34,6 @@ require.config({
 		'actions.set'                                      : 'describer-core/actions/set',
 		'actions.toggle'                                   : 'describer-core/actions/toggle',
 		'actions.trigger'                                  : 'describer-core/actions/trigger',
-
-		// core
-		'_config'                                          : 'describer-core/_config',
-		'_super'                                           : 'describer-core/_super',
-		'core'                                             : 'describer-core/core',
 	},
 	waitSeconds: 500
 });
@@ -106,6 +107,9 @@ require(['jquery', '_config'], function require_jquery($){
 
 			// Führt die im DomReadyObject hinterlegten Funktionen aus
 			execDomReadyObject();
+
+			// Trigger Picturefill um die entsprechenden Images in die Div-Container zu injecten
+			try{picturefill();}catch(e){}
 
 			if(window.debug){
 				jmHF.checkConfigJS();
