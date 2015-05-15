@@ -1,0 +1,9 @@
+[submodule "js/describer-add-ons"]
+	path = js/describer-add-ons
+	url = https://github.com/describerjs/describer-add-ons
+[submodule "js/describer-core"]
+	path = js/describer-core
+	url = https://github.com/describerjs/describer-core
+[submodule "js/describer-localStorage"]
+	path = js/describer-localStorage
+	url = https://github.com/describerjs/describer-localStorage
