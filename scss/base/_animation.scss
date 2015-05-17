@@ -1,0 +1,167 @@
+/*------------------------------------*\
+	$ANIMATION
+\*------------------------------------*/
+
+/**
+ * FADE................................Fade Element
+ * .....fade-in (Fade-In/Out)
+ * PARALLAX............................Container Properties for Parallax Elements
+ * .....parallax-img					- Parallax-Image
+ * .....parallax-inner-container		- Parallax-Element Container
+ * .....parallax-layer					- Add more Layers to Parallax Element
+ * SCROLL-ANIM.........................Scroll-Animation
+ * SLIDE...............................Slide Element
+ * .....btt (bottom-to-top)
+ * .....ltr (left-to-right)
+ * .....rtl (right-to-left)
+ * .....ttb (top-to-bottom)
+ * SMOOTH..............................Smooth moving Element
+ * .....down
+ * .....left
+ * .....right
+ * .....up
+**/
+
+
+
+
+
+/*------------------------------------*\
+	$FADE
+\*------------------------------------*/
+
+.fade {
+	@extend %fade;
+}
+
+
+
+
+
+/*------------------------------------*\
+	$PARALLAX
+\*------------------------------------*/
+
+.parallax {
+	overflow: hidden;
+	position: relative;
+
+	// Parallax-Image
+	.parallax-img {
+		display: block;
+		margin: 0 auto;
+	}
+
+	// Prallax-Inner-Container
+	.parallax-inner {
+		//@include element-stretch;
+		position: relative;
+	}
+
+	//
+	.parallax-layer {
+		@include element-stretch;
+		@include vertical-align(absolute);
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+	$SCROLL-ANIM
+\*------------------------------------*/
+
+.scroll-anim {
+	position: absolute;
+	z-index: 999;
+}
+
+
+
+
+
+/*------------------------------------*\
+	$SLIDE
+\*------------------------------------*/
+
+%slide {
+	transition: transform .9s linear;
+
+	&.show {
+		transform: translate3d(0, 0, 0);
+	}
+}
+
+.slide {
+	.slide-btt {
+		@extend %slide;
+		transform: translate3d(0, 300%, 0);
+	}
+
+	.slide-ltr {
+		@extend %slide;
+		transform: translate3d(-200%, 0, 0);
+	}
+
+	.slide-rtl {
+		@extend %slide;
+		transform: translate3d(200%, 0, 0);
+	}
+
+	.slide-ttb {
+		@extend %slide;
+		transform: translate3d(0, -300%, 0);
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+	$SMOOTH
+\*------------------------------------*/
+
+.smooth {
+	.smooth-down {
+		@extend %fade;
+
+		&.show {
+			animation: smoothDown 1s both;
+		}
+	}
+
+	.smooth-left {
+		@extend %fade;
+
+		&.show {
+			animation: smoothLeft 1s both;
+		}
+	}
+
+	.smooth-right {
+		@extend %fade;
+
+		&.show {
+			animation: smoothRight 1s both;
+		}
+	}
+
+	.smooth-up {
+		@extend %fade;
+
+		&.show {
+			animation: smoothUp 1s both;
+		}
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+	
+\*------------------------------------*/

@@ -1,0 +1,78 @@
+/*------------------------------------*\
+    $STAGE-TEASER
+\*------------------------------------*/
+
+/**
+ * Der "stage-teaser" findet sich als einleitendes Element einer Seite.
+ * Innerhalb "stage-teaser" gibt es drei Elemente: "stage-teaser-img", "stage-teaser-head" und "stage-teaser-content".
+ * "stage-teaser-img" ist das Keyvisual.
+ * "stage-teaser-head" ist die Headline.
+ * "stage-teaser-content" umfasst den restlichen Inhalt.
+ *
+	<div class="stage-teaser">
+    </div>
+ *
+**/
+
+
+
+
+
+.stage-teaser {
+	@extend %element-default;
+	overflow: hidden;
+
+	// Das Keyvisual
+	.st-figure {
+		/**/
+	}
+
+	// Footerbereich <footer>
+	.st-footer {
+		@include bp-m {
+			@include absolute('', '', $default-spacing, '');
+		}
+	}
+
+	// Die einleitende Headline
+	.st-head {
+		/**/
+	}
+
+	// Headerbereich <header>
+	.st-header {
+		/**/
+	}
+
+	// Innerer Container für "st-header", "st-main", "st-footer"
+	.st-inner {
+		@include element-indent;
+
+		@include bp-m {
+			@include absolute(0, '', '', 0);
+			@include column(8);
+			background-color: rgba($theme-stage-teaser-inner-bg, .75);
+			margin: $space $pad-and-half;
+			padding: $space $pad-and-half $space-triple;
+		}
+
+		@include bp-l {
+			@include column(6);
+			margin: $space $pad-and-half;
+			padding: $space $pad-and-half $space-triple;
+		}
+	}
+
+	// Umfasst den textlichen Inhalt
+	.st-main {
+		/**/
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+    
+\*------------------------------------*/

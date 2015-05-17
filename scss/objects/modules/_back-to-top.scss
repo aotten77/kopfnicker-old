@@ -1,0 +1,34 @@
+/*------------------------------------*\
+    $BACK-TO-TOP
+\*------------------------------------*/
+
+.back-to-top {
+	@include centered;
+	background: $theme-backtotop-bg url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAGCAYAAAD68A/GAAAAJklEQVQImWNgwAT/oRgv+I+G8SrCazIuE1DECbkJLk/Q4QwMDP8Bdf8T7T8LZmEAAAAASUVORK5CYII=") no-repeat scroll ($default-inner-padding) center;
+	color: $theme-backtotop-fg;
+	display: inline-block;
+	margin: $default-spacing 0 -($default-spacing);
+	padding: $default-spacing $default-inner-padding $default-spacing ($default-inner-padding * 2);
+	position: relative;
+	transition: background-color $default-transition-duration $default-transition-function;
+
+	&:active,
+	&:focus,
+	&:hover {
+		@if $theme-backtotop-active-bg != transparent {
+			background-color: $theme-backtotop-active-bg;
+		}
+		@if $theme-backtotop-active-fg != transparent {
+			color: $theme-backtotop-active-fg;
+		}
+		text-decoration: underline;
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+    
+\*------------------------------------*/

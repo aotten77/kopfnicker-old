@@ -1,0 +1,290 @@
+/*------------------------------------*\
+    $VARIABLES
+\*------------------------------------*/
+
+/**
+ * COLORS..............................Diverse Farbwerte
+ * THEME...............................Direkte Farbzuweisung an Elemente
+ * ......bg = background
+ * ......fg = foreground
+ * TYPO................................Typo/Webfonts/etc.
+ * BREAKPOINTS.........................Breakpoints Definitionen
+ * LAYOUT..............................Layout-Spezifische Angaben
+ * .....layout (default, full, constrained)
+ * .....layout-maxwidth
+ * .....ui-height
+ * SPACING.............................Abstände definieren
+ * TRANSITIONS.........................Eigenschaften für Transitions
+**/
+
+
+
+
+
+/*------------------------------------*\
+    $COLORS
+\*------------------------------------*/
+
+$theme-color-alpha:		#fff;
+$theme-color-beta:		#000;
+$theme-color-gamma:		#f0f0f0;
+$theme-color-delta:		#ddd;
+$theme-color-epsilon:	#aaa;
+$theme-color-zeta:		#999;
+$theme-color-eta:		#666;
+$theme-color-theta:		#333;
+
+$theme-color-error:		#f00;
+$theme-color-hint:		#e1b500;
+$theme-color-valid:		#00b900;
+
+
+
+
+
+/*------------------------------------*\
+    $THEME
+\*------------------------------------*/
+
+// Main
+$theme-body-bg:						$theme-color-alpha;
+$theme-body-fg:						$theme-color-beta;
+$theme-constrained-bg:				$theme-color-theta;
+$theme-footer-bg:					transparent;
+$theme-footer-fg:					$theme-body-fg;
+$theme-headings-bg:					transparent;
+$theme-headings-fg:					$theme-body-fg;
+$theme-page-bg:						transparent;
+$theme-page-fg:						$theme-body-fg;
+$theme-selection-bg:				$theme-color-beta;
+$theme-selection-fg:				$theme-color-alpha;
+$theme-shadow:						$theme-color-beta;
+
+// Accordion
+$theme-accordion-bg:				$theme-color-delta;
+$theme-accordion-fg:				$theme-color-beta;
+$theme-accordion-handle-bg:			$theme-color-zeta;
+$theme-accordion-handle-fg:			$theme-color-alpha;
+$theme-accordion-active-bg:			$theme-color-epsilon;
+$theme-accordion-active-fg:			$theme-color-beta;
+$theme-accordion-content-bg:		$theme-color-gamma;
+$theme-accordion-content-fg:		$theme-color-beta;
+$theme-accordion-icon-bg:			$theme-color-epsilon;
+$theme-accordion-icon-fg:			$theme-color-alpha;
+$theme-accordion-icon-active-bg:	$theme-color-eta;
+$theme-accordion-icon-active-fg:	$theme-accordion-icon-bg;
+
+// Back-To-Top
+$theme-backtotop-bg:				transparent;
+$theme-backtotop-fg:				$theme-color-eta;
+$theme-backtotop-active-bg:			transparent;
+$theme-backtotop-active-fg:			transparent;
+
+// Buttons
+$theme-btn-bg:						$theme-color-zeta;
+$theme-btn-fg:						$theme-color-eta;
+$theme-btn-active-bg:				$theme-color-delta;
+$theme-btn-active-fg:				$theme-color-epsilon;
+$theme-btn-disabled-bg:				$theme-color-eta;
+$theme-btn-disabled-fg:				$theme-color-theta;
+$theme-cta-bg:						$theme-color-beta;
+$theme-cta-fg:						$theme-color-alpha;
+$theme-cta-active-bg:				$theme-color-eta;
+$theme-cta-active-fg:				$theme-color-alpha;
+
+// Entrance-Marker
+$theme-entrancemarker-bg:			$theme-color-eta;
+$theme-entrancemarker-fg:			$theme-color-alpha;
+$theme-entrancemarker-active-bg:	$theme-color-delta;
+$theme-entrancemarker-active-fg:	$theme-entrancemarker-bg;
+
+// Forms
+$theme-formset-bg:					$theme-color-delta;
+$theme-formset-fg:					$theme-color-beta;
+$theme-formset-header-bg:			$theme-color-eta;
+$theme-formset-header-fg:			$theme-color-alpha;
+
+// Inputs
+$theme-input-border:				$theme-color-epsilon;
+$theme-input-bg:					$theme-color-alpha;
+$theme-input-fg:					$theme-color-beta;
+
+// Links
+$theme-link-bg:						transparent;
+$theme-link-fg:						$theme-color-zeta;
+$theme-link-hover-bg:				transparent;
+$theme-link-hover-fg:				$theme-color-theta;
+
+// Modal
+$theme-modal-bg:					$theme-color-theta;
+$theme-modal-bar-bg:				$theme-color-eta;
+
+// Navigation
+$theme-nav-bg:						$theme-color-delta;
+$theme-nav-fg:						$theme-color-beta;
+$theme-nav-items-bg:				$theme-nav-bg;
+$theme-nav-items-fg:				$theme-nav-fg;
+$theme-nav-link-bg:					$theme-nav-items-bg;
+$theme-nav-link-fg:					$theme-nav-items-fg;
+$theme-nav-link-active-bg:			$theme-color-epsilon;
+$theme-nav-link-active-fg:			$theme-color-beta;
+$theme-nav-link-hover-bg:			$theme-color-zeta;
+$theme-nav-link-hover-fg:			$theme-color-beta;
+$theme-flyout-bg:					$theme-nav-link-active-bg;
+$theme-flyout-fg:					$theme-nav-link-active-fg;
+$theme-flyout-link-bg:				$theme-nav-link-bg;
+$theme-flyout-link-fg:				$theme-nav-link-fg;
+$theme-flyout-link-active-bg:		$theme-color-theta;
+$theme-flyout-link-active-fg:		$theme-color-delta;
+$theme-flyout-group-bg:				$theme-color-eta;
+$theme-flyout-group-fg:				$theme-color-delta;
+$theme-flyout-group-active-bg:		$theme-flyout-link-active-bg;
+$theme-flyout-group-active-fg:		$theme-flyout-link-active-fg;
+$theme-menu-btn-bg:					$theme-color-alpha;
+$theme-menu-btn-fg:					$theme-color-beta;
+$theme-menu-item-bg:				$theme-color-delta;
+
+// Stage-Teaser
+$theme-stage-teaser-inner-bg:		$theme-color-alpha;
+
+// Tabs
+$theme-tabs-bg:						$theme-color-eta;
+$theme-tab-bg:						$theme-color-zeta;
+$theme-tab-fg:						$theme-color-alpha;
+$theme-tab-active-bg:				$theme-color-alpha;
+$theme-tab-active-fg:				$theme-color-beta;
+$theme-tab-hover-bg:				$theme-color-delta;
+$theme-tab-hover-fg:				$theme-color-beta;
+$theme-tab-content-bg:				$theme-color-alpha;
+$theme-tab-content-fg:				$theme-color-beta;
+
+// Teaser
+$theme-teaser-bg:					$theme-color-gamma;
+$theme-teaser-fg:					$theme-color-beta;
+
+// Text
+$theme-principal-bg:				$theme-color-gamma;
+$theme-principal-fg:				$theme-color-alpha;
+
+// Togglebox
+$theme-togglebox-bg:				$theme-color-delta;
+$theme-togglebox-fg:				$theme-color-beta;
+$theme-togglebox-active-bg:			$theme-color-epsilon;
+$theme-togglebox-active-fg:			$theme-color-beta;
+$theme-togglebox-content-bg:		$theme-color-gamma;
+$theme-togglebox-content-fg:		$theme-color-beta;
+$theme-togglebox-icon-bg:			$theme-color-epsilon;
+$theme-togglebox-icon-fg:			$theme-color-alpha;
+$theme-togglebox-icon-active-bg:	$theme-color-eta;
+$theme-togglebox-icon-active-fg:	$theme-accordion-icon-bg;
+
+
+
+
+
+/*------------------------------------*\
+    $TYPO
+\*------------------------------------*/
+
+$font:			Helvetica, Arial, sans-serif;
+$font-alpha:	"Roboto Condensed", $font;
+$font-beta:		"Roboto Slab", $font;
+
+$font-btn:		$font-alpha;
+$font-forms:	$font-alpha;
+$font-heading:	$font-beta;
+$font-principal:	$font-beta;
+$font-main:		$font-alpha;
+$font-nav:		$font-alpha;
+
+
+
+
+
+/*------------------------------------*\
+    $BREAKPOINTS
+\*------------------------------------*/
+
+$bp-xs:		22rem;
+$bp-s:		29.75rem;
+$bp-m:		48rem;
+$bp-l:		60rem;
+$bp-xl:		73rem;
+$bp-xxl:	82rem;
+
+
+
+
+
+/*------------------------------------*\
+    $LAYOUT
+\*------------------------------------*/
+
+$layout:			default;
+$layout-maxwidth:	80rem;
+$ui-height:			2.75rem;
+
+
+
+
+
+/*------------------------------------*\
+    $SPACING
+\*------------------------------------*/
+
+// Distance calculated by Grid
+$dist:						$total-width * (($gutter-width * .5) / gridsystem-width($columns));
+
+// Preferably Top & Bottom
+$space:						rhythm(1, $base-font-size);
+$space-and-half:			rhythm(1.5, $base-font-size);
+$space-double:				rhythm(2, $base-font-size);
+$space-triple:				rhythm(3, $base-font-size);
+$space-quad:				rhythm(4, $base-font-size);
+$space-half:				rhythm(.5, $base-font-size);
+$space-quarter:				rhythm(.25, $base-font-size);
+$space-three-quarter:		$space-half + $space-quarter;
+
+// Preferably Left & Right
+$pad:						1rem;
+$pad-and-half:				$pad * 1.5;
+$pad-double:				$pad * 2;
+$pad-triple:				$pad * 3;
+$pad-quad:					$pad * 4;
+$pad-half:					$pad / 2;
+$pad-quarter:				$pad / 4;
+$pad-three-quarter:			$pad-half + $pad-quarter;
+
+// Defaults
+$default-spacing:			$space-half;
+$default-inner-spacing:		$space-quarter;
+$default-element-spacing:	$space-triple;
+$default-element-spacing-s:	$space-and-half;
+$default-element-spacing-m:	$space-and-half;
+$default-element-spacing-l:	$space-triple;
+$default-padding:			$pad;
+$default-inner-padding:		$pad-and-half;
+
+$dist-s:					$pad;
+$dist-m:					$pad;
+$dist-l:					$pad-and-half;
+
+
+
+
+
+/*------------------------------------*\
+	$TRANSITIONS
+\*------------------------------------*/
+
+$default-transition-delay:		0;
+$default-transition-duration:	.3s;
+$default-transition-function:	ease;
+
+
+
+
+
+/*------------------------------------*\
+	
+\*------------------------------------*/

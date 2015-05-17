@@ -1,0 +1,58 @@
+/*------------------------------------*\
+    $VIDEO ELEMENTS
+\*------------------------------------*/
+
+/**
+ * GENERIC.............................Variables/Placeholder
+ * BACKGROUND_VIDEO....................Like background-image
+ * CONTROLLED_VIDEO....................JS Controlled Video - Plays/Stops Video inside/outside viewport
+**/
+
+
+
+
+
+/*------------------------------------*\
+    $GENERIC
+\*------------------------------------*/
+
+// Video-JS override
+@mixin override-video-js {
+    .vjs-tech {
+        height: auto !important;
+        position: relative !important;
+    }
+}
+
+
+
+
+
+/*------------------------------------*\
+    $BACKGROUND_VIDEO
+\*------------------------------------*/
+
+// Background-Video
+.video-bg {
+	@include override-video-js;
+}
+
+
+
+
+
+/*------------------------------------*\
+    CONTROLLED_VIDEO
+\*------------------------------------*/
+
+.video-controlled {
+    @include override-video-js;
+}
+
+
+
+
+
+/*------------------------------------*\
+    
+\*------------------------------------*/

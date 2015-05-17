@@ -1,0 +1,159 @@
+/*------------------------------------*\
+    $CAROUSEL
+\*------------------------------------*/
+
+/**
+ * OWL_CAROUSEL........................Owl-Carousel Customs
+ * .....override
+ * .....stage-teaser
+**/
+
+
+
+
+
+/*------------------------------------*\
+    $OWL_CAROUSEL
+\*------------------------------------*/
+
+.owl-carousel {
+	@extend %element-default;
+	display: none;
+	overflow: hidden;
+
+	.owl-controls {
+		height: 50px;
+		position: relative;
+
+		.owl-buttons {
+			position: absolute;
+			top: 0;
+			width: 100%;
+		}
+
+		.owl-prev,
+		.owl-next {
+			background-color: inherit !important;
+			height: 50px;
+			margin: 0;
+			padding: 0;
+			position: absolute;
+			text-indent: -9999em;
+
+			&:after {
+				@include pseudo-element-default;
+				@include absolute(0, '', '', 0);
+				color: $theme-color-beta;
+				font-size: 1.563em;
+				line-height: 2em;
+				text-indent: 0;
+			}
+		}
+
+		.owl-next {
+			right: 3%;
+
+			@include bp-l {
+				right: 3.125em;
+			}
+
+			&:after {
+				content: ">";
+			}
+		}
+
+		.owl-prev {
+			left: 2%;
+
+			@include bp-l {
+				left: 2.188em;
+			}
+
+			&:after {
+				content: "<";
+			}
+		}
+	}
+
+	.owl-item {
+		overflow: hidden;
+		position: relative;
+	}
+
+	.owl-page {
+		height: 50px;
+		margin-left: $pad-three-quarter;
+		opacity: .75;
+		overflow: hidden;
+		width: 140px;
+
+		@include bp-l {
+			width: 340px;
+		}
+
+		&:first-child {
+			margin-left: 0;
+		}
+
+		&.active,
+		&:hover {
+			opacity: 1;
+		}
+
+		.owl-page-img {
+			float: left;
+			width: 140px;
+		}
+		
+		.owl-page-title {
+			display: none;
+			float: right;
+			margin-left: 0.75rem;
+			text-align: left;
+			width: 188px;
+
+			@include bp-l {
+				display: block;
+			}
+		}
+	}
+
+	.stage-teaser {
+		margin-bottom: 0;
+
+		.st-inner {
+			@include move(-150%);
+			transition: transform $default-transition-duration $default-transition-duration;
+			transition-timing-function: cubic-bezier;
+		}
+
+		&.hide-large {
+			@include hide-on-desktop;
+		}
+
+		&.hide-med {
+			@include hide-on-tablet;
+		}
+
+		&.visible {
+			.st-inner {
+				@include move(0);
+			}
+		}
+
+		&.leaving {
+			.st-inner {
+				@include move(-150%);
+				transition-delay: 0;
+			}
+		}
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+    
+\*------------------------------------*/

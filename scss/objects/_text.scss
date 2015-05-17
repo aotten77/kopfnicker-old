@@ -1,0 +1,49 @@
+/*------------------------------------*\
+    $TEXT
+\*------------------------------------*/
+
+/**
+ * BYLINE..............................Attendant Textline
+**/
+
+
+
+
+
+/*------------------------------------*\
+    $BYLINE
+\*------------------------------------*/
+
+.byline {
+    @extend %as-decrease;
+    display: block;
+}
+
+
+
+
+
+/*------------------------------------*\
+    $PRINCIPAL
+\*------------------------------------*/
+
+.principal {
+	background-color: $theme-principal-bg;
+	border-radius: 3px;
+	clear: left;
+	color: $theme-principal-fg;
+	float: left;
+	font-family: $font-principal;
+	line-height: 1;
+	margin-bottom: 3px;
+	padding: $pad-quarter $pad-half;
+	white-space: nowrap;
+}
+
+
+
+
+
+/*------------------------------------*\
+    
+\*------------------------------------*/

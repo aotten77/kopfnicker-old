@@ -1,0 +1,257 @@
+/*------------------------------------*\
+	$FORM
+\*------------------------------------*/
+
+/**
+ * FORM_GROUP..........................Groups "form-section"
+ * FORM_SECTION........................Groups <label> & <input>
+ * FORM_SET............................<fieldset class="form-set">
+ * FORM_TEXT...........................Well-formed <p>
+ * INPUT_GROUP.........................Group of Inputs
+ * LABEL_TEXT..........................<label class="label-text">
+ *
+ 	<form class="form">
+ 		<fieldset class="form-set">
+			<header class="fs-header">
+				<legend class="fs-head">Fieldset Headline</legend>
+				<p class="byline">Fieldset Headline Byline</p>
+			</header>
+ 			<div class="form-group">
+ 				<div class="form-section">
+ 					<label class="label-text">Input</label>
+ 					<input class="input-text" id="input" type="text" z-index="1" />
+ 				</div>
+ 			</div>
+			<footer class="fs-footer">
+				<button class="cta" type="submit" z-index="2">Submit</button>
+			</footer>
+ 		</fieldset>
+ 	</form>
+ *
+**/
+
+
+
+
+
+/*------------------------------------*\
+	$FORM_GROUP
+\*------------------------------------*/
+
+.form-group {
+	@include row;
+	@include element-indent;
+	padding: {
+		bottom: 0;
+		top: 0;
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+	$FORM_SECTION
+\*------------------------------------*/
+
+$form-section-columns: 9;
+
+%form-section {
+	@extend %element-default;
+	margin-bottom: $space-half;
+
+	@include bp-l {
+		@include column($form-section-columns);
+	}
+}
+
+.form-section {
+	@extend %form-section;
+
+	&:nth-of-type(1):nth-last-of-type(2),
+	&:nth-of-type(2):nth-last-of-type(1) {
+		@include bp-m {
+			@include column(6);
+		}
+
+		@include bp-l {
+			@include column($form-section-columns / 2);
+		}
+	}
+
+	&:nth-of-type(1):nth-last-of-type(3),
+	&:nth-of-type(2):nth-last-of-type(2),
+	&:nth-of-type(3):nth-last-of-type(1) {
+		@include bp-l {
+			@include column($form-section-columns / 3);
+		}
+	}
+
+	&:nth-of-type(1):nth-last-of-type(4),
+	&:nth-of-type(2):nth-last-of-type(3),
+	&:nth-of-type(3):nth-last-of-type(2),
+	&:nth-of-type(4):nth-last-of-type(1) {
+		@include bp-l {
+			@include column($form-section-columns / 4);
+		}
+	}
+}
+
+.form-section-l {
+	@extend %form-section;
+
+	@include bp-m {
+		@include column(8);
+	}
+
+	@include bp-l {
+		@include column($form-section-columns / 1.5);
+	}
+}
+
+.form-section-s {
+	@extend %form-section;
+
+	@include bp-m {
+		@include column(4);
+	}
+
+	@include bp-l {
+		@include column($form-section-columns / 3);
+	}
+}
+
+.form-section-xs {
+	@extend %form-section;
+	@include column(6);
+	
+	@include bp-m {
+		@include column(3);
+	}
+
+	@include bp-l {
+		@include column($form-section-columns / 4);
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+	$FORM_SET
+\*------------------------------------*/
+
+.form-set {
+	@include clearfix;
+	@include element-default-spacing;
+	background-color: $theme-formset-bg;
+	color: $theme-formset-fg;
+	position: relative;
+
+	.fs-footer {
+		@extend %element-inner-default;
+		clear: both;
+		padding-bottom: $space-three-quarter;
+	}
+
+	.fs-head {
+		@extend %as-heading__normal;
+		font-family: $font-heading;
+	}
+
+	.fs-header {
+		@include element-indent;
+		background-color: $theme-formset-header-bg;
+		clear: both;
+		color: $theme-formset-header-fg;
+		margin-bottom: $space-three-quarter;
+		width: 100%;
+	}
+
+	.fs-input {
+		@include move(0, 50%, 0, relative);
+	}
+}
+
+.form-subset {
+	border-bottom: 2px solid $theme-body-bg;
+	padding: $space-half 0 $space-half;
+
+	&:first-of-type {
+		.fss-head {
+			padding-top: $space-quarter;
+		}
+	}
+
+	.fss-head {
+		@extend %as-heading__normal;
+		@include indent(padding, 1.5);
+		padding: {
+			bottom: 0;
+			top: $space-three-quarter;
+		}
+	}
+}
+
+
+
+
+
+/*------------------------------------*\s
+	$FORM_TEXT
+\*------------------------------------*/
+
+.form-text {
+	@extend %form-section;
+	@extend %element-inner-default;
+	clear: both;
+	float: none;
+	margin-bottom: 0;
+	padding-top: 0;
+}
+
+
+
+
+
+/*------------------------------------*\
+	$INPUT_GROUP
+\*------------------------------------*/
+
+.input-group {
+	&:nth-child(n+2) {
+		border-top: 2px solid transparent;
+		padding-top: $space;
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+	$LABEL_TEXT
+\*------------------------------------*/
+
+.label-text {
+	border: 1px solid transparent;
+	padding-left: $pad-three-quarter;
+
+	.byline {
+		@extend %as-small;
+
+		@include bp-m {
+			display: inline;
+		}
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+	
+\*------------------------------------*/

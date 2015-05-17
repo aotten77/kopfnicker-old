@@ -1,0 +1,208 @@
+/*------------------------------------*\
+    $PLACEHOLDER
+\*------------------------------------*/
+
+/**
+ * ANIMATION_DEFAULTS..................Default Animating Properties
+ * .....fade
+ * ELEMENT_DEFAULTS....................Elements default properties
+ * .....page-element-default...........Default Page-Element Properties (header, main, footer)
+ * .....element-default................Default Element Properties
+ * .....element-inner-default..........Nested Default Element inside Default Element
+ * .....element-nested-default.........Nested Default Element inside Default Element (varied padding)
+ * ELEMENT_EXTENSIONS..................Extended Elements properties
+ * .....last-child-default
+ * TOGGLE_ELEMENT......................Toggle properties
+ * .....toggle-subject
+ * .....toggle-content
+ * .....toggle-content-subject
+ * HEADING.............................Headline properties
+**/
+
+
+
+
+
+/*------------------------------------*\
+    $ANIMATION_DEFAULTS
+\*------------------------------------*/
+
+%fade {
+	opacity: 0;
+	transition: opacity 1s linear;
+
+	&.show {
+		opacity: 1;
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+	$ELEMENT_DEFAULTS
+\*------------------------------------*/
+
+// Layout Default Elements (<header>, <main>, <footer>)
+%page-element-default {
+	@include row;
+	clear: both;
+	position: relative;
+}
+
+// Modules Defaults
+%element-default {
+	@include clearfix;
+	@include column(12);
+	@include element-default-spacing;
+	clear: both;
+	display: block;
+	position: relative;
+}
+
+// Wrapped Elements Default/Inner-Elements
+%element-inner-default {
+	@include element-indent;
+	margin: {
+		left: 0 !important;
+		right: 0 !important;
+	}
+	position: relative;
+}
+
+// Nested Elements Default / Elements w/Grid
+%element-nested-default {
+	@extend %element-inner-default;
+	padding: {
+		bottom: $default-inner-spacing;
+		top: $default-inner-spacing;
+	}
+}
+
+// Textmodule Defaults
+%element-text-default {
+	main > &,
+	.page-section > &,
+	.section > & {
+		@include column(12);
+		@include indent;
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+	$ELEMENT_EXTENSIONS
+\*------------------------------------*/
+
+// Last-Child Default
+%last-child-default {
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+	$HEADING
+\*------------------------------------*/
+
+%heading {
+	@extend %element-text-default;
+	@if $theme-headings-bg != transparent {
+		background-color: $theme-headings-bg;
+	}
+	@if $theme-headings-fg != $theme-body-fg {
+		color: $theme-headings-fg;
+	}
+	font: {
+		family: $font-heading;
+		weight: normal;
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+	TOGGLE_ELEMENT
+\*------------------------------------*/
+
+$toggle-icon-dim: 2.25rem;
+
+%toggle-subject {
+	@extend %element-nested-default;
+	display: block;
+	padding-left: $toggle-icon-dim + 1;
+	position: relative;
+	transition:	background-color $default-transition-duration $default-transition-function,
+				color $default-transition-duration $default-transition-function;
+	user-select: none;
+
+	&:after {
+		@include pseudo-element-default;
+		@include absolute((($toggle-icon-dim - ($toggle-icon-dim / 8)) / 2), '', '', (($toggle-icon-dim - ($toggle-icon-dim / 4)) / 2));
+		border-left: ($toggle-icon-dim / 7) solid transparent;
+		border-right: ($toggle-icon-dim / 7) solid transparent;
+		border-top: ($toggle-icon-dim / 7) solid $theme-togglebox-icon-fg;
+		height: 0;
+		line-height: 0;
+		transition: border $default-transition-duration $default-transition-function;
+		width: 0;
+	}
+
+	&:before {
+		@include pseudo-element-default;
+		@include absolute(0, '', 0, 0);
+		transition: background $default-transition-duration $default-transition-function;
+		width: $toggle-icon-dim;
+	}
+}
+
+%toggle-subject-visible {
+	&:after {
+		border-bottom: ($toggle-icon-dim / 7) solid $theme-togglebox-icon-active-fg;
+		border-top: 0;
+	}
+}
+
+%toggle-content {
+	height: 0;
+	opacity: 0;
+	overflow: hidden;
+	transition:	height $default-transition-duration $default-transition-function,
+				opacity $default-transition-duration $default-transition-function;
+}
+
+%toggle-content-visible {
+	height: auto;
+	min-height: $default-padding;
+	opacity: 1;
+	padding: {
+		bottom: $default-spacing;
+		top: $default-spacing;
+	}
+
+	@include bp-m {
+		@include indent(padding, 2.25);
+	}
+
+	@include bp-l {
+		@include indent(padding, 1.25);
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+	
+\*------------------------------------*/

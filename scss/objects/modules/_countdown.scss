@@ -1,0 +1,74 @@
+/*------------------------------------*\
+    $COUNTDOWN
+\*------------------------------------*/
+
+/**
+ *
+ 	<div class="countdown">
+		<span class="cd-days">00 Tage</span>
+		<span class="cd-time">
+			<span class="cdt-item">00 <span class="cd-byline">Stunden</span></span>
+			<span class="cdt-item">00 <span class="cd-byline">Minuten</span></span>
+			<span class="cdt-item">00 <span class="cd-byline">Sekunden</span></span>
+		</span>
+	</div>
+ *
+**/
+
+
+
+
+
+/*------------------------------------*\
+    
+\*------------------------------------*/
+
+.countdown {
+	@extend %fade;
+	clear: both;
+	font-family: $font-beta;
+	margin: $space-and-half auto;
+	position: relative;
+	
+	.cd-byline {
+		@include adjust-font-size-to($eta);
+		display: block;
+		font-family: $font-alpha;
+		line-height: 1;
+	}
+
+	.cd-days {
+		@include adjust-font-size-to($epsilon);
+		display: block;
+		line-height: 1;
+		margin-bottom: $space-quarter;
+	}
+
+	.cd-time {
+		@include adjust-font-size-to(60px);
+		@include clearfix;
+		display: block;
+
+		@include bp-s {
+			@include adjust-font-size-to(100px);
+			line-height: 1;
+		}
+
+		@include bp-m {
+			@include adjust-font-size-to(140px);
+			line-height: 1;
+		}
+
+		.cdt-item {
+			display: inline-block;
+		}
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+    
+\*------------------------------------*/

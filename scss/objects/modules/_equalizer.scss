@@ -1,0 +1,158 @@
+/*------------------------------------*\
+    $EQUALIZER
+\*------------------------------------*/
+
+/**
+ * GENERIC.............................Variables/Placeholder
+ * MAIN................................Main Element Styling
+ * KEYFRAMES...........................Animation Keyframes
+**/
+
+
+
+
+
+/*------------------------------------*\
+    $GENERIC
+\*------------------------------------*/
+
+//@mixin equalizer($number) {
+//	animation: equalizer-level #{$number}s linear infinite;
+//}
+
+@mixin equalizer($level, $number: .6) {
+	animation: equalizer-level-#{$level} #{$number}s linear infinite;
+}
+
+$_level-dist: 34px;
+
+
+
+
+
+/*------------------------------------*\
+    $MAIN
+\*------------------------------------*/
+
+.equalizer {
+	display: none;
+
+	@include bp-xl {
+		@extend %fade;
+		@include element-stretch;
+		background: transparent url("/img/equalizer-reflection.png") no-repeat scroll center bottom;
+		display: block;
+		height: 273px;
+		margin: $space-triple auto 0;
+		max-width: 949px;
+		transition-delay: 1s;
+
+		&:after {
+			@include absolute(-25%, 0, -25%, 0);
+			@include pseudo-element-default;
+			//background: transparent radial-gradient(circle closest-side, rgba($theme-color-alpha, 1), transparent) no-repeat scroll center center;
+			background: transparent radial-gradient(rgba(255,255,255,1),rgba(255,255,255,1) 25%,rgba(255,255,255,0) 40%) no-repeat scroll center center;
+		}
+
+		.eq-items {
+			height: 177px;
+			position: relative;
+		}
+
+		.eq-item {
+			background: transparent url("/img/equalizer-level.png") no-repeat scroll 0 bottom;
+			bottom: 0;
+			display: block;
+			position: absolute;
+			width: 30px;
+
+			&:nth-child(1)	{ @include equalizer(xs);	left: $_level-dist * 1; }
+			&:nth-child(2)	{ @include equalizer(m);	left: $_level-dist * 2; }
+			&:nth-child(3)	{ @include equalizer(s);	left: $_level-dist * 3; }
+			&:nth-child(4)	{ @include equalizer(l);	left: $_level-dist * 4; }
+			&:nth-child(5)	{ @include equalizer(xl);	left: $_level-dist * 5; }
+			&:nth-child(6)	{ @include equalizer(m);	left: $_level-dist * 6; }
+			&:nth-child(7)	{ @include equalizer(l);	left: $_level-dist * 7; }
+			&:nth-child(8)	{ @include equalizer(s);	left: $_level-dist * 8; }
+			&:nth-child(9)	{ @include equalizer(m);	left: $_level-dist * 9; }
+			&:nth-child(10)	{ @include equalizer(l);	left: $_level-dist * 10; }
+			&:nth-child(11)	{ @include equalizer(xl);	left: $_level-dist * 11; }
+			&:nth-child(12)	{ @include equalizer(xl);	left: $_level-dist * 12; }
+			&:nth-child(13)	{ @include equalizer(xl);	left: $_level-dist * 13; }
+			&:nth-child(14)	{ @include equalizer(xl);	left: $_level-dist * 14; }
+			&:nth-child(15)	{ @include equalizer(xl);	left: $_level-dist * 15; }
+			&:nth-child(16)	{ @include equalizer(xl);	left: $_level-dist * 16; }
+			&:nth-child(17)	{ @include equalizer(l);	left: $_level-dist * 17; }
+			&:nth-child(18)	{ @include equalizer(m);	left: $_level-dist * 18; }
+			&:nth-child(19)	{ @include equalizer(s);	left: $_level-dist * 19; }
+			&:nth-child(20)	{ @include equalizer(l);	left: $_level-dist * 20; }
+			&:nth-child(21)	{ @include equalizer(m);	left: $_level-dist * 21; }
+			&:nth-child(22)	{ @include equalizer(xl);	left: $_level-dist * 22; }
+			&:nth-child(23)	{ @include equalizer(l);	left: $_level-dist * 23; }
+			&:nth-child(24)	{ @include equalizer(s);	left: $_level-dist * 24; }
+			&:nth-child(25)	{ @include equalizer(m);	left: $_level-dist * 25; }
+			&:nth-child(26)	{ @include equalizer(xs);	left: $_level-dist * 26; }
+		}
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+    $KEYFRAMES
+\*------------------------------------*/
+
+@keyframes equalizer-level {
+	from	{ height: 100%;	}
+	25%		{ height: 20%;	}
+	50%		{ height: 10%;	}
+	to		{ height: 100%;	}
+}
+
+@keyframes equalizer-level-xs {
+	from	{ height: 10%;	}
+	25%		{ height: 30%;	}
+	50%		{ height: 5%;	}
+	75% 	{ height: 20%;	}
+	to		{ height: 10%;	}
+}
+
+@keyframes equalizer-level-s {
+	from	{ height: 20%;	}
+	25%		{ height: 40%;	} 
+	50%		{ height: 30%;	}
+	75%		{ height: 50%;	}
+	to		{ height: 20%;	}
+}
+
+@keyframes equalizer-level-m {
+	from	{ height: 20%;	}
+	25%		{ height: 60%;	}
+	50%		{ height: 40%;	}
+	to		{ height: 20%;	}
+}
+
+@keyframes equalizer-level-l {
+	from	{ height: 30%;	}
+	25%		{ height: 80%;	}
+	50%		{ height: 40%;	}
+	75%		{ height: 50%;	}
+	to		{ height: 30%;	}
+}
+
+@keyframes equalizer-level-xl {
+	from	{ height: 40%;	}
+	25%		{ height: 100%;	}
+	50%		{ height: 60%;	}
+	to		{ height: 40%;	}
+}
+
+
+
+
+
+/*------------------------------------*\
+    
+\*------------------------------------*/

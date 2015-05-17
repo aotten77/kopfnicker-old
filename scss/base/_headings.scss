@@ -1,0 +1,55 @@
+/*------------------------------------*\
+    $HEADINGS
+\*------------------------------------*/
+
+/**
+ *
+**/
+
+
+
+
+
+h1 {
+	@extend %heading;
+	@extend %as-heading__largest;
+	@extend %as-heading__largest--typeset;
+}
+
+h2 {
+	@extend %heading;
+	@extend %as-heading__large;
+	@extend %as-heading__large--typeset;
+}
+
+h3 {
+	@extend %heading;
+	@extend %as-heading__medium;
+	@extend %as-heading__medium--typeset;
+}
+
+h4 {
+	@extend %heading;
+	@extend %as-heading__normal;
+	@extend %as-heading__normal--typeset;
+}
+
+h5 {
+	@extend %heading;
+	@extend %as-heading__small;
+	@extend %as-heading__small--typeset;
+}
+
+h6 {
+	@extend %heading;
+	@extend %as-heading__smallest;
+	@extend %as-heading__smallest--typeset;
+}
+
+
+
+
+
+/*------------------------------------*\
+    
+\*------------------------------------*/

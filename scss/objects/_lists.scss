@@ -1,0 +1,111 @@
+/*------------------------------------*\
+    $LISTS
+\*------------------------------------*/
+
+/**
+ * GENERIC.............................Variables/Placeholder
+ * .....List
+ * .....List-Item Unordered List
+ * .....List-Item Ordered List
+ * LIST-ITEM...........................List-Item
+ * BULLET-LIST.........................Bullets
+ * DECIMAL-LIST........................Numbers
+ * LIST................................Simple Listing, no List-Type
+**/
+
+
+
+
+
+/*------------------------------------*\
+    $GENERIC
+\*------------------------------------*/
+
+%list {
+	@extend %as-list;
+	@extend %as-list--typeset;
+	@extend %element-text-default;
+	@extend %last-child-default;
+}
+
+%ul-list-item {
+	padding-left: $pad;
+}
+
+%ol-list-item {
+	margin-left: $pad-and-half;
+}
+
+
+
+
+
+/*------------------------------------*\
+    $LIST-ITEM
+\*------------------------------------*/
+
+.list-item {
+	@extend %last-child-default;
+	margin-bottom: $space-quarter;
+	position: relative;
+}
+
+
+
+
+
+/*------------------------------------*\
+    $BULLET-LIST
+\*------------------------------------*/
+
+.bullet-list {
+	@extend %list;
+
+	.list-item {
+		@extend %ul-list-item;
+
+		&:before {
+			@include pseudo-element-default;
+			content: "\2022";
+			left: 0;
+		}
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+    $DECIMAL-LIST
+\*------------------------------------*/
+
+.decimal-list {
+	@extend %list;
+	list-style-type: decimal-leading-zero;
+
+	.list-item {
+		@extend %ol-list-item;
+	}
+}
+
+
+
+
+
+
+/*------------------------------------*\
+    $LIST
+\*------------------------------------*/
+
+.list {
+	@extend %list;
+}
+
+
+
+
+
+/*------------------------------------*\
+    
+\*------------------------------------*/

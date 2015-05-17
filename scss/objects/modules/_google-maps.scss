@@ -1,0 +1,39 @@
+/*------------------------------------*\
+    $GOOGLE_MAPS
+\*------------------------------------*/
+
+#map-canvas {
+	@extend %element-default;
+	@include column(12);
+	height: 250px;
+
+	@include bp-m {
+		height: 400px;
+	}
+
+	@include bp-l {
+		height: 400px;
+	}
+
+	@include bp-xl {
+		height: 500px;
+	}
+
+	img {
+		// Fix gegen verzerrte Google Maps Controls
+		max-width: none;
+	}
+
+	//
+	.maps-infowindow {
+		min-height: 140px;
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+	
+\*------------------------------------*/

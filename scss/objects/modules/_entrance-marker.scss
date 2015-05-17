@@ -1,0 +1,62 @@
+/*------------------------------------*\
+    $ENTRANCE_MARKER
+\*------------------------------------*/
+
+/**
+ * GENERIC.............................Variables/Placeholder
+ * .....$entrance-marker-dim (Dimension)
+ * ENTRANCE_MARKER.....................Starter Button
+**/
+
+
+
+
+
+/*------------------------------------*\
+    $GENERIC
+\*------------------------------------*/
+
+$entrance-marker-dim: 3.5rem;
+
+
+
+
+
+/*------------------------------------*\
+    $ENTRANCE_MARKER
+\*------------------------------------*/
+
+.entrance-marker {
+	display: none;
+
+	@include bp-l {
+		@include absolute(60vh, 0, '', 0);
+		background: $theme-entrancemarker-bg url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAANCAYAAABGkiVgAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAHdJREFUeNpi+P//PwMU+wMxIxKfFMwI1Q/mwwQ7/kPAdDIMZoTq+w81hwHmQmRAisHIBsJAAC4JYgzGqY+gAlINRA5TUgwmqI6BRA1EWUyK15iIDSJSIuEasWFOauwSlToYyE02+PSRmsCJyhikZMUIYnMaQIABAO3Fe0Vp6olEAAAAAElFTkSuQmCC") no-repeat scroll 50% 50%;
+		border: 3px solid $theme-entrancemarker-fg;
+		border-radius: 50%;
+		display: block;
+		height: $entrance-marker-dim;
+		margin: 0 auto;
+		transform: scale(.85);
+		transition:	background-color $default-transition-duration $default-transition-function,
+					transform .6s;
+		width: $entrance-marker-dim;
+		z-index: 1;
+
+		&:active,
+		&:focus,
+		&:hover {
+			background-color: $theme-entrancemarker-active-bg;
+			color: $theme-entrancemarker-active-fg;
+			transform: scale(1);
+		}
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+    
+\*------------------------------------*/

@@ -1,0 +1,85 @@
+/*------------------------------------*\
+    $MAIN
+\*------------------------------------*/
+
+/**
+ * MAIN................................HTML <main> Section
+ * PAGE_WRAPPER........................Content Wrapper
+**/
+
+
+
+
+
+/*------------------------------------*\
+    $MAIN_CONTENT_AREA
+\*------------------------------------*/
+
+.page-main {
+	@extend %page-element-default;
+}
+
+
+
+
+
+/*------------------------------------*\
+    $PAGE_WRAPPER
+\*------------------------------------*/
+
+.page {
+	@include clearfix;
+	background-color: $theme-page-bg;
+	color: $theme-page-fg;
+	overflow: hidden;
+	position: relative;
+
+	@if $layout == default {
+		@include constrained;
+	}
+}
+
+.page-bg {
+	@include fixed(0, '', '', 0);
+	backface-visibility: hidden;
+	height: 100%;
+	width: 100%;
+
+	.page-bg-img {
+		@include element-stretch;
+		max-width: none;
+		min-height: 100%;
+		min-width: 100%;
+	}
+}
+
+.page-section {
+	@include clearfix;
+	@include element-default-spacing;
+	clear: both;
+	position: relative;
+
+	@if $layout == constrained {
+		&:nth-child(2n+1) {
+			background-color: $theme-constrained-bg;
+		}
+	}
+}
+
+.section {
+	@include clearfix;
+	clear: both;
+	position: relative;
+
+	@if $layout == constrained {
+		@include constrained;
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+    
+\*------------------------------------*/

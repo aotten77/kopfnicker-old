@@ -1,0 +1,44 @@
+/*------------------------------------*\
+    $STATE_INDICATOR
+\*------------------------------------*/
+
+/**
+ * Device State Detection with CSS Media Queries and JavaScript
+ * http://davidwalsh.name/device-state-detection-css-media-queries-javascript
+**/
+
+
+
+
+
+.state-indicator {
+	@include absolute(-999em, '', '', -999em);
+
+	&:before {
+		content: "bp-xl";
+
+		@media all and (max-width: $bp-l) {
+			content: "bp-l";
+		}
+
+		@media all and (max-width: $bp-m) {
+			content: "bp-m";
+		}
+
+		@media all and (max-width: $bp-s) {
+			content: "bp-s";
+		}
+
+		@media all and (max-width: $bp-xs) {
+			content: "bp-xs";
+		}
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+    
+\*------------------------------------*/

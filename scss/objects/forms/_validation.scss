@@ -1,0 +1,78 @@
+/*------------------------------------*\
+    $VALIDIERUNG
+\*------------------------------------*/
+
+/**
+ * Error...............................Display Errors
+ * .....error-msg
+**/
+
+
+
+
+
+/*------------------------------------*\
+	$ERROR
+\*------------------------------------*/
+
+.error-msg {
+	color: $theme-color-error;
+	padding-left: $pad-three-quarter;
+}
+
+
+
+
+
+/*------------------------------------*\
+	
+\*------------------------------------*/
+
+// Fehlerhaftes <input> erhält diese Klasse.
+// Ebenso wird ein <span> mit dieser Klasse erzeugt.
+.error {
+	color: $theme-color-error;
+}
+
+// In allererster Linie die Erweiterung des mit "error" erzeugten <span>
+.error-msg {
+	@extend %label-text;
+	clear: both;
+	padding-top: $space-quarter;
+
+	&+ .autocomplete {
+		bottom: ($pad-double - $pad-quarter);
+	}
+
+	&[style="display: none;"] {
+		&+ .autocomplete {
+			bottom: 0;
+		}
+	}
+}
+
+// Ein gültiges <input> erhält diese Klasse.
+.valid {
+	/**/
+}
+
+// Ein Warn- oder Infofeld
+.info {
+	/**/
+}
+
+// MVC default/ TODO: wird vom BE gelöst und kann nachher gelöscht werden
+.field-validation-error {
+	@extend .error;
+}
+
+// Gesammelte Fehlerausgabe
+.validation-summary-errors {
+	@extend .error;
+	padding: 0 $pad $space;
+}
+
+
+/*------------------------------------*\
+    
+\*------------------------------------*/

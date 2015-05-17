@@ -1,0 +1,177 @@
+/*------------------------------------*\
+    $TABLES
+\*------------------------------------*/
+
+/**
+ * GENERIC.............................Variables/Placeholder
+ * .....Table-Width (Set table width to 100%)
+ * .....<td>
+ * .....<th>
+ * CAPTION.............................Basic Styling for Table Headline <caption> Element
+ * COL.................................Equal widths to each column
+ * TABLE...............................Basic Styling for <table> Element
+ * TABLE_BODY..........................Basic Styling for <tbody> Element
+ * TABLE_CELLS.........................Basic Styling for Table-Cell <td>/<th> Element
+ * TABLE_FOOTER........................Basic Styling for <tfoot> Element
+ * TABLE_HEADER........................Basic Styling for <thead> Element
+**/
+
+
+
+
+
+/*------------------------------------*\
+    $GENERIC
+\*------------------------------------*/
+
+// Table aufspannen
+$table-width: 100%;
+
+%table-cell {
+	@include element-indent;
+	line-height: 1;
+	text-align: left;
+}
+
+
+
+
+
+/*------------------------------------*\
+    $CAPTION
+\*------------------------------------*/
+
+caption {
+	@extend %heading;
+	@extend %as-heading__large;
+	@extend %table-cell;
+	color: $theme-headings-fg;
+	text-align: left;
+}
+
+
+
+
+
+/*------------------------------------*\
+    $COL
+\*------------------------------------*/
+
+col {
+	&:nth-child(1):nth-last-child(1) {
+		width: $table-width;
+	}
+
+	&:nth-child(1):nth-last-child(2),
+	&:nth-child(2):nth-last-child(1) {
+		width: ($table-width / 2);
+	}
+
+	&:nth-child(1):nth-last-child(3),
+	&:nth-child(2):nth-last-child(2),
+	&:nth-child(3):nth-last-child(1) {
+		width: ($table-width / 3);
+	}
+
+	&:nth-child(1):nth-last-child(4),
+	&:nth-child(2):nth-last-child(3),
+	&:nth-child(3):nth-last-child(2),
+	&:nth-child(4):nth-last-child(1) {
+		width: ($table-width / 4);
+	}
+
+	&:nth-child(1):nth-last-child(5),
+	&:nth-child(2):nth-last-child(4),
+	&:nth-child(3):nth-last-child(3),
+	&:nth-child(4):nth-last-child(2),
+	&:nth-child(5):nth-last-child(1) {
+		width: ($table-width / 5);
+	}
+
+	&:nth-child(1):nth-last-child(6),
+	&:nth-child(2):nth-last-child(5),
+	&:nth-child(3):nth-last-child(4),
+	&:nth-child(4):nth-last-child(3),
+	&:nth-child(5):nth-last-child(2),
+	&:nth-child(6):nth-last-child(1) {
+		width: ($table-width / 6);
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+    $TABLE
+\*------------------------------------*/
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: $table-width;
+}
+
+
+
+
+
+/*------------------------------------*\
+    $TABLE_BODY
+\*------------------------------------*/
+
+tbody {
+	/**/
+}
+
+
+
+
+
+/*------------------------------------*\
+    TABLE_CELLS
+\*------------------------------------*/
+
+td {
+	@extend %table-cell;
+}
+
+th {
+	@extend %table-cell;
+	font: {
+		family: $font-heading;
+		weight: normal;
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+    $TABLE_FOOTER
+\*------------------------------------*/
+
+tfoot {
+	/**/
+}
+
+
+
+
+
+/*------------------------------------*\
+    $TABLE_HEADER
+\*------------------------------------*/
+
+thead {
+	/**/
+}
+
+
+
+
+
+/*------------------------------------*\
+    
+\*------------------------------------*/

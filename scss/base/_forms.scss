@@ -1,0 +1,244 @@
+/*------------------------------------*\
+    $FORMS
+\*------------------------------------*/
+
+/**
+ * GENERIC.............................Variables/Placeholder
+ * .....%form-element-default
+ * .....%form-element-button
+ * .....%form-element-input
+ * .....%form-element-option
+ * BUTTON..............................<button>
+ * FIELDSET............................<fieldset>
+ * FORM................................<form>
+ * INPUT...............................<input>
+ * .....checkbox
+ * .....file
+ * .....radio
+ * .....submit
+ * LABEL...............................<label>
+ * LEGEND..............................<legend>
+ * OPTION..............................<option>
+ * SELECT..............................<select>
+ * TEXTAREA............................<textarea>
+**/
+
+
+
+
+
+/*------------------------------------*\
+    $GENERIC
+\*------------------------------------*/
+
+%form-element-default {
+	font-family: inherit;
+	font-size: 100%;
+	margin: 0;
+}
+
+%form-element-button {
+	appearance: none;
+	border: 0;
+	cursor: pointer;
+	-webkit-border-radius: 0;
+}
+
+%form-element-input {
+	appearance: none;
+	background-color: $theme-input-bg;
+	border: 1px solid $theme-input-border;
+	-webkit-border-radius: 0;
+	color: $theme-input-fg;
+	height: $ui-height;
+	max-width: 100%;
+	min-width: 100%;
+	outline: none;
+	padding: 0 $pad-three-quarter;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	transition: border-color $default-transition-duration $default-transition-function;
+	width: 100%;
+
+	&:focus {
+		border-color: $theme-color-hint;
+	}
+}
+
+%form-element-option {
+	float: left;
+	margin: $space-quarter $pad-half 0 0;
+}
+
+
+
+
+
+/*------------------------------------*\
+    $BUTTON
+\*------------------------------------*/
+
+button {
+	@extend %form-element-default;
+	@extend %form-element-button;
+}
+
+
+
+
+
+/*------------------------------------*\
+    $FIELDSET
+\*------------------------------------*/
+
+fieldset {
+	/**/
+}
+
+
+
+
+
+/*------------------------------------*\
+    $FORM
+\*------------------------------------*/
+
+form {
+	@extend %element-default;
+}
+
+
+
+
+
+/*------------------------------------*\
+    $INPUT
+\*------------------------------------*/
+
+input {
+	@extend %form-element-default;
+
+	&[type="checkbox"] {
+		@extend %form-element-option;
+	}
+
+	&[type="email"] {
+		@extend %form-element-input;
+	}
+
+	&[type="file"] {
+		@extend %form-element-input;
+		cursor: pointer;
+		width: 100%;
+	}
+
+	&[type="password"] {
+		@extend %form-element-input;
+	}
+
+	&[type="radio"] {
+		@extend %form-element-option;
+	}
+
+	&[type="submit"] {
+		@extend %form-element-button;
+	}
+
+	&[type="tel"] {
+		@extend %form-element-input;
+	}
+
+	&[type="text"] {
+		@extend %form-element-input;
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+    $LABEL
+\*------------------------------------*/
+
+label {
+	cursor: pointer;
+	display: block;
+	font-family: $font-forms;
+	position: relative;
+	user-select: none;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+
+
+
+
+/*------------------------------------*\
+    $LEGEND
+\*------------------------------------*/
+
+legend {
+	/**/
+}
+
+
+
+
+
+/*------------------------------------*\
+    $OPTION
+\*------------------------------------*/
+
+option {
+	padding: {
+		left: $pad-three-quarter;
+		right: $pad-three-quarter;
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+    $SELECT
+\*------------------------------------*/
+
+select {
+	@extend %form-element-default;
+	@extend %form-element-input;
+	cursor: pointer;
+	padding: {
+		left: $pad-half;
+		right: $pad-half;
+	}
+	user-select: none;
+
+	&:-moz-focusring {
+		color: transparent;
+		text-shadow: 0 0 0 $theme-input-fg;
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+    $TEXTAREA
+\*------------------------------------*/
+
+textarea {
+	@extend %form-element-default;
+	@extend %form-element-input;
+	resize: none;
+	-webkit-appearance: none
+}
+
+
+
+
+
+/*------------------------------------*\
+    
+\*------------------------------------*/

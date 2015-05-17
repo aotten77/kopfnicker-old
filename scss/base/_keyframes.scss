@@ -1,0 +1,90 @@
+/*------------------------------------*\
+	$ANIMATION_KEYFRAMES
+\*------------------------------------*/
+
+/**
+ * PULSATE.............................Pulsating Animation
+ * SMOOTH..............................Smooth Animation
+ * .....smoothDown
+ * .....smoothLeft
+ * .....smoothRight
+ * .....smoothUp
+**/
+
+
+
+
+
+/*------------------------------------*\
+	$PULSATE
+\*------------------------------------*/
+
+@keyframes pulsate {
+	0% {
+		transform: scale(1);
+	}
+
+	50% {
+		transform: scale(.9);
+	}
+
+	100% {
+		transform: scale(1);
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+	$SMOOTH
+\*------------------------------------*/
+
+@keyframes smoothDown {
+	0% {
+		transform: translate3d(0, -5%, 0);
+	}
+
+	100% {
+		transform: none;
+	}
+}
+
+@keyframes smoothLeft {
+	0% {
+		transform: translate3d(1.5%, 0, 0);
+	}
+
+	100% {
+		transform: none;
+	}
+}
+
+@keyframes smoothRight {
+	0% {
+		transform: translate3d(-1.5%, 0, 0);
+	}
+
+	100% {
+		transform: none;
+	}
+}
+
+@keyframes smoothUp {
+	0% {
+		transform: translate3d(0, 5%, 0);
+	}
+
+	100% {
+		transform: none;
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+	
+\*------------------------------------*/

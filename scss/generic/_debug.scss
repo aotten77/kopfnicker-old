@@ -1,0 +1,137 @@
+/*------------------------------------*\
+	$DEBUG
+\*------------------------------------*/
+
+/**
+ * GENERIC.............................Variables/Placeholder
+ * DEBUG...............................Debug Styling
+**/
+
+
+
+
+
+/*------------------------------------*\
+	$GENERIC
+\*------------------------------------*/
+
+$_IsDevServer:		true;
+$_showBreakpoints:	true;
+$_showOutlines:		false;
+
+
+
+
+/*------------------------------------*\
+	$DEBUG
+\*------------------------------------*/
+
+@if $_IsDevServer == true {
+	@if $_showBreakpoints == true {
+		body {
+			&:before {
+				background-color: rgba(0,0,0, .75);
+				border-bottom: 1px solid #fff;
+				color: #fff;
+				content: "@media: -";
+				font-size: 1rem;
+				left: 0;
+				line-height: 2rem;
+				position: fixed;
+				right: 0;
+				text-align: center;
+				top: 0;
+				z-index: 100000000000;
+
+				@include bp-xs {
+					content: "@media: XS";
+				}
+
+				@include bp-s {
+					content: "@media: S";
+				}
+
+				@include bp-m {
+					content: "@media: M";
+				}
+
+				@include bp-l {
+					content: "@media: L";
+				}
+
+				@include bp-xl {
+					content: "@media: XL";
+				}
+
+				@include bp-xxl {
+					content: "@media: XXL";
+				}
+			}
+		}
+	}
+
+	@if $_showOutlines == true {
+		.page {
+			//@include baseline-grid;
+			border: 2px solid #f0f;
+
+			&:before {
+				color: #f0f;
+				content: ".page";
+				font-size: 1.5rem;
+				left: 0;
+				position: absolute;
+				top: 0;
+				z-index: 100000000000;
+			}
+		}
+
+		.page-section {
+			border: 2px solid #e00;
+
+			&:before {
+				color: #e00;
+				content: ".page-section";
+				font-size: 1.5rem;
+				left: 0;
+				position: absolute;
+				right: 0;
+				text-align: left;
+				top: 0;
+				z-index: 100000000000;
+			}
+		}
+
+		%page-element-default {
+			border: 2px solid #00f;
+
+			&:before {
+				color: #00f;
+				content: ".page-element-default";
+				font-size: 1.5rem;
+				left: 0;
+				position: absolute;
+				right: 0;
+				text-align: center;
+				top: 0;
+				z-index: 100000000000;
+			}
+		}
+
+		%element-default {
+			border: 2px solid #0f0;
+
+			&:before {
+				color: #0f0;
+				content: ".element-default";
+				font-size: 1.5rem;
+				left: 0;
+				position: absolute;
+				right: 0;
+				text-align: right;
+				top: 0;
+				z-index: 100000000000;
+			}
+		}
+	}
+}

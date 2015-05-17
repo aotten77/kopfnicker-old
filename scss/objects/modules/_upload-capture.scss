@@ -1,0 +1,74 @@
+/*------------------------------------*\
+    $UPLOAD_CAPTURE
+\*------------------------------------*/
+
+.upload-capture {
+	background-color: $theme-page-bg;
+	max-width: 22rem;
+	
+	.uc-select {
+		position: relative;
+	}
+
+	.form-upload-canvas {
+		border: 1px solid $theme-input-border;
+		height: 22rem;
+		margin: $space-half 0;
+		overflow: hidden;
+		position: relative;
+
+		&:after,
+		&:before{
+			@include pseudo-element-default;
+			@include absolute(50%, -50%, '', -50%);
+			background-color: $theme-input-border;
+			height: 2px;
+		}
+
+		&:after {
+			transform: rotate(45deg);
+		}
+
+		&:before {
+			transform: rotate(-45deg);
+		}
+	}
+
+	.fotouploadprogresslayer {
+		/**/
+	}
+
+	.btn {
+		display: block;
+		width: 100%;
+	}
+
+	.cta {
+		@extend .btn;
+	}
+
+	.input-file {
+		height: 42px;
+		left: 0;
+		opacity: 0;
+		position: absolute;
+		top: 0;
+	}
+}
+
+/*Verschachtelung außerhalb "fu-select" und Neubennenung von <div class="form-upload-canvas"></div>.
+Muss es <button type="submit"> sein?
+Fallback regeln fehlen.
+Foto entfernen, ändern nicht möglich.
+Default Canvas Styling.
+Zustand Canvas filled fehlt.*/
+
+
+
+
+
+
+
+/*------------------------------------*\
+    
+\*------------------------------------*/

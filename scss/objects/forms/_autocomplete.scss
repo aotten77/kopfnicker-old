@@ -1,0 +1,56 @@
+/*------------------------------------*\
+    $AUTOCOMPLETE
+\*------------------------------------*/
+
+// Autocomplete Ausgabe
+.autocomplete {
+	@extend .input-text;
+	//bottom: 0;
+	left: 0;
+	position: absolute;
+	z-index: 1;
+
+	&:disabled {
+		color: $grey-4;
+	}
+}
+
+// Eingabefeld für Autocomplete
+.input-autocomplete {
+	@extend .input-text;
+	background-color: transparent;
+	-webkit-opacity: 1;
+	position: relative;
+	-webkit-text-fill-color: rgba(0, 0, 0, 1);
+	z-index: 2;
+}
+
+// Autocomplete Auswahllayer vom JS bereitgestellt
+.ac_results {
+	@extend .input-text;
+	padding: 0;
+
+	&> ul {
+		&> li {
+			cursor: pointer;
+			padding: ($space-quarter / 2) $pad-half;
+
+			&:hover {
+				background-color: $grey-3;
+			}
+
+			&.ac_over {
+				background-color: $red;
+				color: $white;
+			}
+		}
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+
+\*------------------------------------*/

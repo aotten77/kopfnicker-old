@@ -1,0 +1,168 @@
+/*------------------------------------*\
+    $INPUT_OPTIONS
+\*------------------------------------*/
+
+/**
+ * GENERIC.............................Variables/Placeholder
+ * .....%label-option
+ * INPUT_OPTION........................<input type="checkbox/radio" />
+ * INPUT_CHECKBOX......................Custom Checkbox
+ * .....checkbox
+ * .....checkbox-stable
+ * INPUT_RADIO.........................Custom Radiobutton
+ * .....radiobutton
+ * .....radiobutton-stable
+**/
+
+
+
+
+
+/*------------------------------------*\
+    $GENERIC
+\*------------------------------------*/
+
+$input-option-size-factor: 1.7;
+$input-option-size: $ui-height * 2 / $input-option-size-factor;
+
+%label-option {
+	margin-top: -3px;
+	margin-bottom: -6px;
+
+	.error-msg {
+		@include absolute('', '', 0, -($pad-half));
+
+		&+ .label-text {
+			margin-bottom: $pad-and-half;
+		}
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+    $INPUT_OPTION
+\*------------------------------------*/
+
+.input-option {
+	border: 0;
+	clip: rect(1px, 1px, 1px, 1px);
+	height: 1px;
+	outline: 0;
+	overflow: hidden;
+	padding: 0;
+	position: absolute !important;
+	width: 1px;
+
+	&~ {
+		.label-text {
+			min-height: $input-option-size;
+			padding: $input-option-size / ($input-option-size-factor + 2) 0 0 (($input-option-size / $input-option-size-factor) + $pad-three-quarter);
+
+			&:after {
+				@include pseudo-element-default;
+				@include absolute((($input-option-size - ($input-option-size / ($input-option-size-factor * $input-option-size-factor))) / 2), '', '', ((($input-option-size / $input-option-size-factor) - ($input-option-size / ($input-option-size-factor * $input-option-size-factor))) / 2));
+				background-color: $theme-input-bg;
+				border: 1px solid $theme-input-bg;
+				height: $input-option-size / ($input-option-size-factor * $input-option-size-factor);
+				transition: background-color $default-transition-duration $default-transition-function;
+				width: $input-option-size / ($input-option-size-factor * $input-option-size-factor);
+			}
+
+			&:before {
+				@include pseudo-element-default;
+				@include absolute((($input-option-size - ($input-option-size / $input-option-size-factor)) / 2), '', '', 0);
+				background-color: $theme-input-bg;
+				border: 1px solid $theme-input-border;
+				height: $input-option-size / $input-option-size-factor;
+				transition: border-color $default-transition-duration $default-transition-function;
+				width: $input-option-size / $input-option-size-factor;
+			}
+		}
+	}
+
+	&:focus {
+		&~ .label-text {
+			&:before {
+				border-color: $theme-color-hint;
+			}
+		}
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+    $CHECKBOX
+\*------------------------------------*/
+
+.checkbox {
+	@extend %label-option;
+
+	.input-option {
+		&:checked {
+			&~ .label-text {
+				&:after {
+					background: transparent url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAJCAYAAAALpr0TAAAAJElEQVQYlWNgIA78J1YRQYU0VoQugNMkZAmC1v0nRhEuJ6AAAPkhE+0fnheMAAAAAElFTkSuQmCC") no-repeat scroll center center;
+				}
+			}
+		}
+	}
+}
+
+.checkbox-stable {
+	@extend .checkbox;
+	cursor: initial;
+	position: relative;
+}
+
+
+
+
+
+/*------------------------------------*\
+    $RADIOBUTTON
+\*------------------------------------*/
+
+.radiobutton {
+	@extend %label-option;
+	@include indent(padding, .5);
+
+	.label-text {
+		&:after {
+			border-radius: 50%;
+		}
+
+		&:before {
+			border-radius: 50%;
+		}
+	}
+
+	.input-option {
+		&:checked {
+			&~ .label-text {
+				&:after {
+					background-color: $theme-input-fg;
+				}
+			}
+		}
+	}
+}
+
+.radiobutton-stable {
+	@extend .radiobutton;
+	cursor: initial;
+	position: relative;
+}
+
+
+
+
+
+/*------------------------------------*\
+
+\*------------------------------------*/

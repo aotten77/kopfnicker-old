@@ -1,0 +1,60 @@
+/*------------------------------------*\
+    $LINKS
+\*------------------------------------*/
+
+/**
+ * ANCHOR..............................HTML <a> Element
+ * LINK................................Textlink
+**/
+
+
+
+
+
+/*------------------------------------*\
+    $ANCHOR
+\*------------------------------------*/
+
+a {
+	color: inherit;
+	cursor: pointer;
+	outline: 0;
+	text-decoration: none;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+
+
+
+
+/*------------------------------------*\
+    $LINK
+\*------------------------------------*/
+
+.link {
+	@if $theme-link-bg != transparent {
+		background-color: $theme-link-bg;
+		color: $theme-link-fg;
+		transition:	background-color $default-transition-duration $default-transition-function,
+					color $default-transition-duration $default-transition-function;
+	} @else {
+		transition: color $default-transition-duration $default-transition-function;
+		color: $theme-link-fg;
+	}
+
+	&:focus,
+	&:hover {
+		@if $theme-link-bg != transparent {
+			background-color: $theme-link-hover-bg;
+		}
+		color: $theme-link-hover-fg;
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+    
+\*------------------------------------*/
