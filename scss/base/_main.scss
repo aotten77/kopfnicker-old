@@ -39,12 +39,31 @@
 html {
 	background-color: $theme-body-bg;
 	color: $theme-body-fg;
-	font: 100% $font-main;
-	font-weight: 100;
-	line-height: em-font($base-line-height);
+	font: 100 100%/#{$base-line-height / $base-font-size} $font-main;
 	overflow-y: scroll;
 	-ms-text-size-adjust:		100%;
 	-webkit-text-size-adjust:	100%;
+
+	&:before {
+		@include absolute(-999rem, '', '', -999rem);
+		content: "bp-xl";
+
+		@media all and (max-width: $bp-l) {
+			content: "bp-l";
+		}
+
+		@media all and (max-width: $bp-m) {
+			content: "bp-m";
+		}
+
+		@media all and (max-width: $bp-s) {
+			content: "bp-s";
+		}
+
+		@media all and (max-width: $bp-xs) {
+			content: "bp-xs";
+		}
+	}
 }
 
 

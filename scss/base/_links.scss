@@ -16,11 +16,8 @@
 \*------------------------------------*/
 
 a {
+	@extend %clickable;
 	color: inherit;
-	cursor: pointer;
-	outline: 0;
-	text-decoration: none;
-	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 

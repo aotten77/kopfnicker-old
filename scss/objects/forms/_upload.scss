@@ -1,0 +1,80 @@
+/*------------------------------------*\
+    UPLOAD
+\*------------------------------------*/
+
+/**
+ * ----------------------------------------------------------------------------
+ *  user-upload
+ *  custom <input type="file" /> Element
+ * ----------------------------------------------------------------------------
+ *
+ *
+ * CONTENTS
+ *
+ * COMPONENTS
+ * .upload.............................<input type="file" /> container <div>
+ *  .input-file........................main upload element <input type="file" />
+ *
+ * HTML SNIPPET
+**/
+
+
+
+
+
+.upload {
+	background-color: $theme-input-bg;
+	border: 1px solid $theme-input-border;
+	height: $ui-height;
+	position: relative;
+
+	
+	.input-file {
+		@include element-stretch;
+		border: 0;
+		height: 100%;
+		opacity: 0;
+		z-index: 1;
+
+
+		&::-ms-browse {
+			/**/
+		}
+
+
+		&::-webkit-file-upload-button {
+			cursor: pointer;
+			@include visually-hidden;
+		}
+	}
+
+
+	.input-file-value {
+		@include element-stretch;
+		display: block;
+		margin: 1px;
+		padding: $pad-half 0 0 .65rem;
+	}
+
+
+	.btn {
+		float: right;
+		margin: -1px;
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+	HTML SNIPPET
+\*------------------------------------*/
+
+/*
+<div class="upload">
+	<input class="input-file" id="input-file" name="input-file" type="file" data-jmname="sync-val" data-jmdominit="true" />
+	<span class="input-file-value" data-jmdomselector="input-file">Keine Datei ausgewählt.</span>
+	<span class="btn">Datei auswählen</span>
+</div>
+*/

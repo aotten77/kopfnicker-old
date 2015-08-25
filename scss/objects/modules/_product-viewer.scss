@@ -1,0 +1,699 @@
+/*------------------------------------*\
+    $PRODUCT VIEWER
+\*------------------------------------*/
+
+/**
+ * Modul zur variablen Präsentation von Produkten
+ *
+	<div class="productContainer" data-jmname="jmpdv" data-jmdominit="true" data-jmconfig ="{'jmpdvID':'jm2002','jmpdvMode': 'vertical','jmpdvOptions':'threeD|photo|video', 'jmpdvVIDs':'7KFd7PlO92U|KLdRkoroG6g','jmpdvVFM':'youtube', 'jmpdvHotspotsLabels':'BackCamera|SideSlider|UltraThin', 'jmpdvHotspotsPositions':'31|15|45'}">
+   		<p>HTC + Youtube</p>
+	</div>
+ *
+**/
+
+
+/* New Styles von Ulf */
+.jm-product-detail-viewer{
+  // width:800px;
+  // height: 700px;
+  // float:left;
+  // margin-bottom: 100px;
+}
+.jmpdv__options-list{
+    // @include clearfix;
+    background-color: $theme-nav-items-bg;
+    clear: both;
+    display: inline;
+    // margin-top: $menu-btn-height + 1;
+
+    .jmpdv-ol__item{
+        transition: background-color .15s linear;
+        background-color: $theme-nav-link-bg;
+        border-bottom: 1px solid $theme-nav-link-active-bg;
+        position: relative;
+        z-index: 1;
+
+        @include bp-l {
+            border-bottom: initial;
+            float: left;
+
+            &:before {
+                @include pseudo-element-default;
+                transition: bottom .15s linear, top .15s linear;
+                background-color: $theme-nav-link-active-bg;
+                bottom: $default-spacing;
+                top: $default-spacing;
+                width: 1px;
+            }
+
+            &:first-child {
+                &:before {
+                    background-color: inherit;
+                }
+            }
+        }
+
+        &:hover {
+            background-color: $theme-nav-link-active-bg;
+        }
+        .jmpdv-ol-item--threeD, .jmpdv-ol-item--video, .jmpdv-ol-item--photo{
+            @extend %nav-link;
+            color: $theme-nav-link-fg;
+        }
+    }
+
+}
+
+.jmpdv__control-panel, .jmpdv__hotspots-list{
+    @extend .jmpdv__options-list;
+}
+
+.jmpdv_hotspot__item{
+    @extend .jmpdv-ol__item;
+    .jmpdv_hot-item__link{
+        @extend %nav-link;
+        color: $theme-nav-link-fg;
+        cursor: pointer;
+    }
+}
+
+.jmpdv__cp-wrapper{
+    display: table;
+    width: 100%;
+}
+
+.jmpdv__control-panel{
+    display: table-row;
+}
+
+.jmpdv-cp__item{
+    @extend .jmpdv-ol__item;
+    display: table-cell;
+    text-align: center;
+    .jmpdv-cp-item--previous, .jmpdv-cp-item--play, .jmpdv-cp-item--stop, .jmpdv-cp-item--next, .jmpdv-cp-item--zoomin, .jmpdv-cp-item--zoomout{
+        @extend %button;
+        // @extend %nav-link;
+        color: $theme-nav-link-fg;
+        cursor: pointer;
+        display: inline-block;
+        padding: .4rem .3rem;
+        width: 100%;
+        background: transparent;
+        &:focus{
+            outline: none;
+        }
+    }
+}
+
+.jmpdv-content{
+	@include clearfix;
+}
+.threesixty_images{
+    position: relative;
+	img{
+        cursor: -webkit-grab;
+        cursor: grab;
+		position: absolute;
+		top: 0;
+		width: auto;
+		height: auto;
+    	&:active{
+            cursor: -webkit-grabbing;
+            cursor: grabbing;
+        }
+    }
+}
+.current-image {
+	visibility: visible;
+	width: 100%;
+}
+.previous-image {
+	visibility: hidden;
+	width: 0;
+}
+
+.flipster {
+    overflow: hidden;
+    display: none;
+}
+
+.flipster > ul {
+    -webkit-transform: translate3d(0,0,0); -moz-transform: translate3d(0,0,0); -ms-transform: translate3d(0,0,0); transform: translate3d(0,0,0);
+    -webkit-transition: all 333ms; -moz-transition: all 333ms; transition: all 333ms;
+    position: relative;
+    cursor: pointer;
+}
+
+.flipster li {
+    display: block;
+    -webkit-transition: all 333ms ease-in-out; -moz-transition: all 333ms ease-in-out; transition: all 333ms ease-in-out;
+    -webkit-perspective: 800px; -moz-perspective: 800px; perspective: 800px;
+    position: absolute;
+    width: 20%;
+    opacity: 0.99; /* fix for strange clipping behavior on rotated elements in chrome. don't know why this works */
+}
+
+.flipster li img {
+    width: 100%;
+    display: block;
+}
+
+.flipster li > img {
+    -webkit-transition: all 500ms; -ms-transition: all 500ms; transition: all 500ms;
+    background-color: #000000;
+    /*
+    -webkit-box-shadow: 0px 0px 3px #000000;
+    -moz-box-shadow: 0px 0px 3px #000000;
+    -ms-box-shadow: 0px 0px 3px #000000;
+    box-shadow: 0px 0px 3px #000000;
+    */
+    -webkit-box-reflect: below 1px -webkit-gradient( linear, left bottom, left top, color-stop(0.05, rgba(255,255,255,0.12)), color-stop(0.2, transparent));
+    width: 100%;
+}
+
+.no-transition {
+    -webkit-transition: all 0ms !important;
+    -moz-transition: all 0ms !important;
+    transition: all 0ms !important;
+}
+
+.flipster .flipster-left > img {
+    -webkit-transform: rotateY(60deg); -moz-transform: rotateY(60deg); -ms-transform: rotateY(60deg); transform: rotateY(60deg);
+}
+
+.flipster .flipster-right > img{
+    -webkit-transform: rotateY(-60deg); -moz-transform: rotateY(-60deg); transform: rotateY(-60deg); -ms-transform: rotateY(-60deg);
+}
+
+.flipster .flipster-current>img {
+    -webkit-transform: rotateY(0deg) translate3d(0, 0, 150px); -moz-transform: rotateY(0deg) translate3d(0, 0, 150px); -ms-transform: rotateY(0deg) translate3d(0, 0, 150px); transform: rotateY(0deg) translate3d(0, 0, 150px); 
+}
+
+.jmpdv__zoom-container{
+    // height:400px;
+}
+
+.photo_thumbs, .video_thumbs {
+    background-color: #eaeaea;
+    padding: 10px 0 10px 10px;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.photo_thumbs{
+  padding: 0;
+}
+
+.video_thumbs img {
+    cursor: pointer;
+    margin-right: 10px;
+    width: 100px;
+    display: block;
+    float: left;
+}
+
+.jmpdv-zc__image{
+  display: none;
+}
+
+.galleryPreBtn{
+  background-color: #999999;
+  color: #ffffff;
+  cursor: pointer;
+  float: left;
+  font-family: Tahoma;
+  font-size: 40px;
+  height: 154px;
+  left: 0px;
+  line-height: 154px;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  width: 74px;
+  z-index: 999;
+}
+
+.galleryNextBtn{
+  background-color: #999999;
+  color: #ffffff;
+  cursor: pointer;
+  float: left;
+  font-family: Tahoma;
+  font-size: 40px;
+  height: 154px;
+  line-height: 154px;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  right:0px;
+  width: 74px;
+  z-index: 999;
+}
+
+/* Old Styles aus original Quellcode von Hamid */
+// .jmpdv-options{
+//     width: 10px;
+//     float: none;
+//     list-style: none;
+//     position: absolute;
+//     z-index: 2147483647;
+// }
+
+// .options li{
+//     float: left;
+// }
+
+// .videos li{
+//     float: none;
+// }
+
+// .clearFix
+// {
+//    clear: both;
+// }
+
+// .options label {
+//     display: block;
+//     cursor: pointer;
+//     position: relative;
+//     z-index: 20; 
+//     width:80px;
+//     height:80px;     
+// }
+
+// .jmpdv-content{
+//   position: absolute;
+//   display: none;
+//   width:100%;
+//   height:600px;
+//   max-width: 800px;
+//   min-height: 600px;
+//   z-index: 1;
+// }
+
+// .photo_thumbs, .video_thumbs {
+//     width:600px;
+//     height:120px; 
+//     background-color: #eaeaea; 
+//     position:relative; 
+//     left:100px;
+// }
+
+// .photo_thumbs a.pics , .video_thumbs a.pics {float:left; padding:7px 21px; display:inline; color:#000000; width:75px; height:75px; cursor:pointer;}
+// .photo_thumbs a.pics img.thumb, .video_thumbs a.pics img.thumb {display:block; width:100px;}
+// .photo_thumbs a.pics span, .video_thumbs a.pics span {display:none; width:6px;}
+// .photo_thumbs a.pics span img, .video_thumbs a.pics span img {margin:10px auto;}
+// .photo_thumbs span, .video_thumbs span{cursor: default;}
+// .photo_thumbs a.pics:focus span, .video_thumbs a.pics:focus span {display:block;}
+
+// .video_thumbs img {width:100px; padding-left: 10px; padding-top: 10px; cursor: pointer;}
+
+// .html5_zoom {
+//     display : none;
+// }
+
+// .youtube_zoom {
+//     display : none;
+// }
+
+// .vimeo_zoom {
+//     display : none;
+// }
+
+// .zoomCSS{
+//   position: absolute;
+//   top:-400px;
+//   left:200px;
+  
+// }
+
+// .flipster {
+//     overflow: hidden;
+//     display: none;
+// }
+
+// .flipster > ul {
+//     -webkit-transform: translate3d(0,0,0); -moz-transform: translate3d(0,0,0); -ms-transform: translate3d(0,0,0); transform: translate3d(0,0,0);
+//     -webkit-transition: all 333ms; -moz-transition: all 333ms; transition: all 333ms;
+//     position: relative;
+//     height: 420px;
+//     cursor: pointer;
+//     top:20px;
+// }
+
+// .flipster li {
+//     display: block;
+//     -webkit-transition: all 333ms ease-in-out; -moz-transition: all 333ms ease-in-out; transition: all 333ms ease-in-out;
+//     -webkit-perspective: 800px; -moz-perspective: 800px; perspective: 800px;
+//     position: absolute;
+//     width: 20%;
+//     opacity: 0.99; /* fix for strange clipping behavior on rotated elements in chrome. don't know why this works */
+// }
+
+// .flipster li img {
+//     width: 100%;
+//     display: block;
+// }
+
+// .flipster li > div {
+//     -webkit-transition: all 500ms; -ms-transition: all 500ms; transition: all 500ms;
+//     background-color: #000000;
+//     /*
+//     -webkit-box-shadow: 0px 0px 3px #000000;
+//     -moz-box-shadow: 0px 0px 3px #000000;
+//     -ms-box-shadow: 0px 0px 3px #000000;
+//     box-shadow: 0px 0px 3px #000000;
+//     */
+//     -webkit-box-reflect: below 1px -webkit-gradient( linear, left bottom, left top, color-stop(0.05, rgba(255,255,255,0.12)), color-stop(0.2, transparent));
+//     width: 100%;
+// }
+
+// .no-transition {
+//     -webkit-transition: all 0ms !important;
+//     -moz-transition: all 0ms !important;
+//     transition: all 0ms !important;
+// }
+
+// .flipster .flipster-left > div {
+//     -webkit-transform: rotateY(60deg); -moz-transform: rotateY(60deg); -ms-transform: rotateY(60deg); transform: rotateY(60deg);
+// }
+
+// .flipster .flipster-right > div{
+//     -webkit-transform: rotateY(-60deg); -moz-transform: rotateY(-60deg); transform: rotateY(-60deg); -ms-transform: rotateY(-60deg);
+// }
+
+// .flipster .flipster-current>div {
+//     -webkit-transform: rotateY(0deg) translate3d(0, 0, 150px); -moz-transform: rotateY(0deg) translate3d(0, 0, 150px); -ms-transform: rotateY(0deg) translate3d(0, 0, 150px); transform: rotateY(0deg) translate3d(0, 0, 150px); 
+// }
+
+// .zoomableContainer{
+//     height:400px;
+// }
+
+// #appContainer{
+//     width:100%;
+//     height:100%;
+//     display: block;
+//     position:absolute;
+//     top:0;
+//     left:0;
+//     position:device-fixed;
+// }
+
+// .mainContainer{
+//   width:100%;
+//   height:100%;
+//   top:0;
+//   left:0;
+//   padding: 0;
+//   margin: 0;
+//   display: block;
+//   position: relative;
+//   overflow: hidden;
+// }
+
+// .threesixty_images {
+//   display: none;
+// }
+
+// .threesixty img {
+//   position:absolute;
+// }
+
+// .current-image {
+//   position:absolute;
+//   visibility:visible;
+//   left:25%;
+//   display: inline-block;
+// }
+
+// .previous-image {
+//   visibility:hidden;
+//   width:0;
+// }
+
+// .spinner {
+//   width:90px;
+//   height:90px;  
+//   position:absolute;
+//   display:none;
+//   background: #333;
+//   background: rgba(0, 0, 0, 0.7);
+//   -webkit-border-radius: 5px;
+//   -moz-border-radius: 5px;
+//   border-radius: 5px; 
+//   right:50%;
+//   bottom: 50%;
+//   margin-right:-45px;
+// }
+
+// .spinner span {
+//   position:absolute;
+//   top:50%;
+//   width:100%;
+//   color:#fff;
+//   font:1em Arial, Verdana, sans;
+//   text-align:center;
+//   line-height:0.6em;
+//   margin-top:-0.3em;
+// }
+
+// .threesixty .nav_bar {
+//   position: absolute;
+//   top: 10px;
+//   right: 10px;
+// }
+
+// .threesixty .nav_bar a {
+//   display: block;
+//   width: 32px;
+//   height: 32px;
+//   float: left;
+// }
+
+// .threesixty .nav_bar a.nav_bar_play {
+//   background-position: 0 0;
+// }
+
+// .threesixty .nav_bar a.nav_bar_previous {
+//   background-position: 0 -73px;
+// }
+
+// .threesixty .nav_bar a.nav_bar_stop {
+//   background-position: 0 -37px;
+// }
+
+// .threesixty .nav_bar a.nav_bar_next {
+//   background-position: 0 -104px;
+// }
+
+// #page, #imgContainer {
+//     width:100%;
+//     height:100%;
+//     z-index: 2;
+// }
+
+// #positionButtonDiv{
+//     display:none;
+//     background-color: #0facee;
+//     border: solid 1px #fff;
+//     color:#FFFFFF;
+//     padding: 8px;
+//     text-align: left;
+//     position:absolute;
+//     right: 6px;
+//     top: 225px;
+// }
+
+// .positionMapClass area{
+//     cursor: pointer;
+// }
+
+// .zoomButton{
+//     border:0;
+//     cursor: pointer;
+//     border: solid 1px #fff;
+//     margin-left: 1px;
+// }
+
+// .positionButtonSpan{
+//   margin-left: 6px;
+// }
+
+// .custom_previous{
+//     width:32px;
+//     height:32px;
+//     background: url(../img/3d/sprites.png) 0 -96px;
+//     float: left;
+//     cursor: pointer;
+// } 
+
+// .custom_play{
+//     width:32px;
+//     height:32px;
+//     background: url(../img/3d/sprites.png) 0 0;
+//     float: left;
+//     cursor: pointer;
+// } 
+
+// .custom_stop{
+//     width:32px;
+//     height:32px;
+//     background: url(../img/3d/sprites.png) 0 -32px;
+//     float: left;
+//     cursor: pointer;
+// } 
+
+// .custom_next{
+//     width:32px;
+//     height:32px;
+//     background: url(../img/3d/sprites.png) 0 -64px;
+//     float: left;
+//     cursor: pointer;
+// } 
+
+// .custom_zoomin{
+//     width:32px;
+//     height:32px;
+//     background: url(../img/3d/sprites.png) 0 64px;
+//     float: left;
+//     cursor: pointer;
+// } 
+
+// .custom_zoomout{
+//     width:32px;
+//     height:32px;
+//     background: url(../img/3d/sprites.png) 0 32px;
+//     float: left;
+//     cursor: pointer;
+// } 
+
+// .controlPanel{
+//   position: absolute;
+//   width:auto;
+//   height:auto;
+//   right:0;
+//   top:0;
+//   display: none;
+// }
+
+// .threeD{
+//     width:79px;
+//     height:79px;
+//     background: url(../img/icons/threesixty.png);
+//     cursor: pointer;
+//     background-size: 100%;
+// }
+
+// .video{
+//     width:79px;
+//     height:79px;
+//     background: url(../img/icons/video.png);
+//     cursor: pointer;
+//     background-size: 100%;
+// }
+
+// .photo{
+//     width:79px;
+//     height:79px;
+//     background: url(../img/icons/photo.png);
+//     cursor: pointer;
+//     background-size: 100%;
+// }
+
+// .options_horisontal{
+//   float: left;
+// }
+
+// .hotSpotHolders{
+//   position: absolute;
+//   top:40px;
+//   right: 4px;
+//   float: left;
+// }
+
+// .hotSpotHolders ul{
+//   position: relative;
+//   font:1.2em Arial, Verdana, sans;
+//   color:#5CC1EB;
+//   cursor: pointer;
+// }
+
+// .docoContainer{
+//   width:100%;
+//   height: 800px;
+//   font:5em Arial, Verdana, sans; 
+//   margin-bottom: 100px;
+//   color:#323232;
+//   text-align: center;
+// }
+
+// .docoContainer a{
+//   text-decoration: none;
+//   color:#323232;
+// }
+
+// .productContainer{
+//   width:800px;
+//   height: 700px;
+//   float:left;
+//   margin-bottom: 100px;
+// }
+
+// .productContainer p{
+//   border-radius: 4px 4px 4px 4px;
+//   -moz-border-radius: 4px 4px 4px 4px;
+//   -webkit-border-radius: 4px 4px 4px 4px;
+//   margin:10;
+//   background-color: #999999;
+//   width:auto;
+//   height:30;
+//   line-height: 30px;
+//   font-family: Tahoma;
+//   font-size: 20px;
+//   color:#ffffff;
+//   text-align: center;
+// }
+
+// .jmpdv-zc__image{
+//   display: none;
+// }
+
+// #imgContainer{
+//   overflow: hidden;
+// }
+
+// .galleryPreBtn{
+//   background-color: #999999;
+//   color: #ffffff;
+//   cursor: pointer;
+//   float: left;
+//   font-family: Tahoma;
+//   font-size: 40px;
+//   height: 154px;
+//   left: 0px;
+//   line-height: 154px;
+//   position: absolute;
+//   text-align: center;
+//   top: 0;
+//   width: 74px;
+//   z-index: 999;
+// }
+
+// .galleryNextBtn{
+//   background-color: #999999;
+//   color: #ffffff;
+//   cursor: pointer;
+//   float: left;
+//   font-family: Tahoma;
+//   font-size: 40px;
+//   height: 154px;
+//   line-height: 154px;
+//   position: absolute;
+//   text-align: center;
+//   top: 0;
+//   right:0px;
+//   width: 74px;
+//   z-index: 999;
+// }

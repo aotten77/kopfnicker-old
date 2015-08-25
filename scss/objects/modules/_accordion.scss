@@ -5,28 +5,26 @@
 /**
  * Gestapelte Toggle-Elemente mit Ziehharmonika Effekt.
  *
-	<div class="accordion">
-		<ul class="acc-group">
-			<li class="acc-item">
-				<a data-jmname="accordionbox" href="#" class="acc-handle">$accordion-item$</a>
-				<div class="acc-panel">
-					<p>$accordion-content$</p>
-				</div>
-			</li>
-			<li class="acc-item">
-				<a data-jmname="accordionbox" href="#" class="acc-handle">$accordion-item$</a>
-				<div class="acc-panel">
-					<p>$accordion-content$</p>
-				</div>
-			</li>
-			<li class="acc-item">
-				<a data-jmname="accordionbox" href="#" class="acc-handle">$accordion-item$</a>
-				<div class="acc-panel">
-					<p>$accordion-content$</p>
-				</div>
-			</li>
-		</ul>
-	</div>
+	<ul class="accordion">
+		<li class="acc-item">
+			<a data-jmname="accordionbox" href="#" class="acc-handle">$accordion-item$</a>
+			<div class="acc-panel">
+				<p>$accordion-content$</p>
+			</div>
+		</li>
+		<li class="acc-item">
+			<a data-jmname="accordionbox" href="#" class="acc-handle">$accordion-item$</a>
+			<div class="acc-panel">
+				<p>$accordion-content$</p>
+			</div>
+		</li>
+		<li class="acc-item">
+			<a data-jmname="accordionbox" href="#" class="acc-handle">$accordion-item$</a>
+			<div class="acc-panel">
+				<p>$accordion-content$</p>
+			</div>
+		</li>
+	</ul>
  *
 **/
 
@@ -39,11 +37,6 @@
 	background-color: $theme-accordion-bg;
 	color: $theme-accordion-fg;
 	
-	// Gruppierung der Elemente <ul>
-	.acc-group {
-		/**/
-	}
-
 	// Der verantwortliche Link zum öffnen des Toggles "acc-panel".
 	.acc-handle {
 		@extend %toggle-subject;
@@ -70,31 +63,29 @@
 	}
 
 	// Ein gruppiertes Element, enthält einen "acc-handle" und das zugehörige "acc-panel". <li>
-	.acc-item {
-		/**/
+	&> .acc-item {
+		// "acc-item" wird mit "show" erweitert und interagiert entsprechend.
+		&.show {
+			&> .acc-handle {
+				@extend %toggle-subject-visible;
+				background-color: $theme-accordion-active-bg;
+				color: $theme-accordion-active-fg;
+
+				&:before {
+					background-color: $theme-accordion-icon-active-bg;
+				}
+			}
+
+			&> .acc-panel {
+				@extend %toggle-content-visible;
+			}
+		}
 	}
 
 	// Der einzublendende Content
 	.acc-panel {
 		@extend %toggle-content;
 		background-color: $theme-accordion-content-bg;
-	}
-
-	// "acc-item" wird mit "show" erweitert und interagiert entpsrechend.
-	.show {
-		&> .acc-handle {
-			@extend %toggle-subject-visible;
-			background-color: $theme-accordion-active-bg;
-			color: $theme-accordion-active-fg;
-
-			&:before {
-				background-color: $theme-accordion-icon-active-bg;
-			}
-		}
-
-		&> .acc-panel {
-			@extend %toggle-content-visible;
-		}
 	}
 }
 

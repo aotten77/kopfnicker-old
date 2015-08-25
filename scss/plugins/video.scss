@@ -1,0 +1,43 @@
+/*------------------------------------*\
+    $VIDEO-JS
+\*------------------------------------*/
+
+@import "originalReferenceSource/video";
+@import "../generic/core";
+@import "../generic/generic-import";
+
+@font-face {
+	font-family: 'VideoJS';
+	src: url('#{$require-path}#{$font-path}vjs.eot');
+	src: url('#{$require-path}#{$font-path}vjs.eot?#iefix') format('embedded-opentype'), url('#{$require-path}#{$font-path}vjs.woff') format('woff'), url('#{$require-path}#{$font-path}vjs.ttf') format('truetype'), url('#{$require-path}#{$font-path}vjs.svg#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+.video-js {
+	/**/
+}
+
+
+* {max-width: 100%} /* the usual RWD shebang */
+
+.video-js {
+    width: auto !important; /* override the plugin's inline dims to let vids scale fluidly */
+    height: auto !important;
+}
+
+.video-js video {position: relative !important;}
+ /* The video should expand to force the height of the containing div.
+ One in-flow element is good. As long as everything else in the container
+ div stays `position: absolute` we're okay */
+
+.video-js .vjs-big-play-button {
+    top: 50%; /* errrr, why isn't the play button centered in the default skin? :) */
+    left: 50%;
+    margin:-4em 0 0 -6em; /* the old negative margin trick */
+}	
+
+
+/*------------------------------------*\
+    
+\*------------------------------------*/

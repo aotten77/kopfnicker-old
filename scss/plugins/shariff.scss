@@ -1,0 +1,30 @@
+/*------------------------------------*\
+	$SHARIFF
+\*------------------------------------*/
+
+@import "originalReferenceSource/shariff.min";
+@import "../generic/core";
+@import "../generic/generic-import";
+
+@font-face {
+	font-family: "FontAwesome";
+	src:	url("#{$require-path}#{$font-path}fontawesome-webfont.eot");
+	src:	url("#{$require-path}#{$font-path}fontawesome-webfont.eot?#iefix") format("embedded-opentype"),
+			url("#{$require-path}#{$font-path}fontawesome-webfont.woff") format("woff"),
+			url("#{$require-path}#{$font-path}fontawesome-webfont.ttf") format("truetype"),
+			url("#{$require-path}#{$font-path}fontawesome-webfont.svg#fontawesomeregular") format("svg");
+	font-style: normal;
+	font-weight: normal;
+}
+
+.shariff {
+	/**/
+}
+
+
+
+
+
+/*------------------------------------*\
+	
+\*------------------------------------*/

@@ -40,7 +40,7 @@ $_level-dist: 34px;
 	@include bp-xl {
 		@extend %fade;
 		@include element-stretch;
-		background: transparent url("/img/equalizer-reflection.png") no-repeat scroll center bottom;
+		background: transparent url("#{$img-path}equalizer-reflection.png") no-repeat scroll center bottom;
 		display: block;
 		height: 273px;
 		margin: $space-triple auto 0;
@@ -60,7 +60,7 @@ $_level-dist: 34px;
 		}
 
 		.eq-item {
-			background: transparent url("/img/equalizer-level.png") no-repeat scroll 0 bottom;
+			background: transparent url("#{$img-path}equalizer-level.png") no-repeat scroll 0 bottom;
 			bottom: 0;
 			display: block;
 			position: absolute;

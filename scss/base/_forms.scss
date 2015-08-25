@@ -1,21 +1,34 @@
 /*------------------------------------*\
-    $FORMS
+    FORMS
 \*------------------------------------*/
 
 /**
- * GENERIC.............................Variables/Placeholder
- * .....%form-element-default
- * .....%form-element-button
- * .....%form-element-input
- * .....%form-element-option
+ * ----------------------------------------------------------------------------
+ *  form elements
+ * ----------------------------------------------------------------------------
+ *
+ *
+ * CONTENTS
+ *
+ * GENERIC
+ * %_form-element-button...............button/clickable elements
+ * %_form-element-default..............every form element
+ * %_form-element-input................input elements
+ * %_form-element-option...............option elements
+ *
+ * COMPONENTS
  * BUTTON..............................<button>
  * FIELDSET............................<fieldset>
  * FORM................................<form>
  * INPUT...............................<input>
  * .....checkbox
+ * .....email
  * .....file
+ * .....password
  * .....radio
  * .....submit
+ * .....tel
+ * .....text
  * LABEL...............................<label>
  * LEGEND..............................<legend>
  * OPTION..............................<option>
@@ -28,43 +41,47 @@
 
 
 /*------------------------------------*\
-    $GENERIC
+    GENERIC
 \*------------------------------------*/
 
-%form-element-default {
+%_form-element-button {
+	@extend %clickable;
+	appearance: none;
+	border: 0;
+	border-radius: 0;
+}
+
+
+%_form-element-default {
 	font-family: inherit;
 	font-size: 100%;
 	margin: 0;
 }
 
-%form-element-button {
-	appearance: none;
-	border: 0;
-	cursor: pointer;
-	-webkit-border-radius: 0;
-}
 
-%form-element-input {
+%_form-element-input {
+	@include webkit-tap-highlight-color;
 	appearance: none;
 	background-color: $theme-input-bg;
 	border: 1px solid $theme-input-border;
-	-webkit-border-radius: 0;
+	border-radius: 0;
 	color: $theme-input-fg;
 	height: $ui-height;
 	max-width: 100%;
 	min-width: 100%;
 	outline: none;
 	padding: 0 $pad-three-quarter;
-	-webkit-tap-highlight-color: rgba(0,0,0,0);
 	transition: border-color $default-transition-duration $default-transition-function;
 	width: 100%;
+
 
 	&:focus {
 		border-color: $theme-color-hint;
 	}
 }
 
-%form-element-option {
+
+%_form-element-option {
 	float: left;
 	margin: $space-quarter $pad-half 0 0;
 }
@@ -74,12 +91,12 @@
 
 
 /*------------------------------------*\
-    $BUTTON
+    BUTTON
 \*------------------------------------*/
 
 button {
-	@extend %form-element-default;
-	@extend %form-element-button;
+	@extend %_form-element-default;
+	@extend %_form-element-button;
 }
 
 
@@ -87,7 +104,7 @@ button {
 
 
 /*------------------------------------*\
-    $FIELDSET
+    FIELDSET
 \*------------------------------------*/
 
 fieldset {
@@ -99,7 +116,7 @@ fieldset {
 
 
 /*------------------------------------*\
-    $FORM
+    FORM
 \*------------------------------------*/
 
 form {
@@ -111,44 +128,51 @@ form {
 
 
 /*------------------------------------*\
-    $INPUT
+    INPUT
 \*------------------------------------*/
 
 input {
-	@extend %form-element-default;
+	@extend %_form-element-default;
+
 
 	&[type="checkbox"] {
-		@extend %form-element-option;
+		@extend %_form-element-option;
 	}
+
 
 	&[type="email"] {
-		@extend %form-element-input;
+		@extend %_form-element-input;
 	}
+
 
 	&[type="file"] {
-		@extend %form-element-input;
-		cursor: pointer;
-		width: 100%;
+		@extend %clickable;
+		@extend %_form-element-input;
 	}
+
 
 	&[type="password"] {
-		@extend %form-element-input;
+		@extend %_form-element-input;
 	}
+
 
 	&[type="radio"] {
-		@extend %form-element-option;
+		@extend %_form-element-option;
 	}
+
 
 	&[type="submit"] {
-		@extend %form-element-button;
+		@extend %_form-element-button;
 	}
+
 
 	&[type="tel"] {
-		@extend %form-element-input;
+		@extend %_form-element-input;
 	}
 
+
 	&[type="text"] {
-		@extend %form-element-input;
+		@extend %_form-element-input;
 	}
 }
 
@@ -157,16 +181,14 @@ input {
 
 
 /*------------------------------------*\
-    $LABEL
+    LABEL
 \*------------------------------------*/
 
 label {
-	cursor: pointer;
+	@extend %clickable;
 	display: block;
 	font-family: $font-forms;
 	position: relative;
-	user-select: none;
-	-webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
 
@@ -174,7 +196,7 @@ label {
 
 
 /*------------------------------------*\
-    $LEGEND
+    LEGEND
 \*------------------------------------*/
 
 legend {
@@ -186,7 +208,7 @@ legend {
 
 
 /*------------------------------------*\
-    $OPTION
+    OPTION
 \*------------------------------------*/
 
 option {
@@ -201,18 +223,18 @@ option {
 
 
 /*------------------------------------*\
-    $SELECT
+    SELECT
 \*------------------------------------*/
 
 select {
-	@extend %form-element-default;
-	@extend %form-element-input;
-	cursor: pointer;
+	@extend %_form-element-default;
+	@extend %_form-element-input;
+	@extend %clickable;
 	padding: {
 		left: $pad-half;
 		right: $pad-half;
 	}
-	user-select: none;
+
 
 	&:-moz-focusring {
 		color: transparent;
@@ -225,12 +247,17 @@ select {
 
 
 /*------------------------------------*\
-    $TEXTAREA
+    TEXTAREA
 \*------------------------------------*/
 
 textarea {
-	@extend %form-element-default;
-	@extend %form-element-input;
+	@extend %_form-element-default;
+	@extend %_form-element-input;
+	height: $ui-height * 3;
+	padding: {
+		bottom: $space-half;
+		top: $space-half;
+	}
 	resize: none;
 	-webkit-appearance: none
 }

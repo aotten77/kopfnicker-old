@@ -4,6 +4,7 @@
 
 /**
  * ADDRESS.............................<address>
+ * BLOCKQUOTE..........................<blockquote>
  * PARAGRAPH...........................<p>
  * STRONG..............................<strong>
 **/
@@ -18,6 +19,24 @@
 
 address {
 	font-style: inherit;
+}
+
+
+
+
+
+/*------------------------------------*\
+    $BLOCKQUOTE
+\*------------------------------------*/
+
+blockquote {
+	@extend %element-text-default;
+	@include as-blockquote;
+	@include as-blockquote--typeset;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
 }
 
 

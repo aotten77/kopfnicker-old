@@ -36,7 +36,11 @@
  * .....hide-on-tablet
  * .....hide-on-mobile
  * .....show-on-mobile
- * VISIBILTY...........................Element is visible or hidden
+ * VISIBILTY...........................Visibility States
+ * .....visibility.....................Element is visible or hidden
+ * .....visually-hidden................Completely remove from the flow but leave available to screen reader
+ * WEBKIT..............................Webkit Porperties
+ * .....webkit-tap-highlight-color
 **/
 
 
@@ -53,10 +57,10 @@
 	top: 50%;
 }
 
-@mixin vertical-align($position: relative) {
+@mixin vertical-align($position: relative, $val: 50%) {
 	position: $position;
-	top: 50%;
-	transform: translateY(-50%);
+	top: $val;
+	transform: translateY(-($val));
 }
 
 
@@ -310,22 +314,22 @@
 	$PSEUDO_ELEMENT_DEFAULTS
 \*------------------------------------*/
 
-@mixin pseudo-element-default {
-	content: "";
+@mixin pseudo-element-default($content: "", $position: absolute) {
+	content: $content;
 	display: block;
-	position: absolute;
+	position: $position;
 }
 
-@mixin pseudo-before {
+@mixin pseudo-before($content: "") {
 	&:before {
-		@include pseudo-element-default;
+		@include pseudo-element-default($content);
 		@content;
 	}
 }
 
-@mixin-pseudo-after {
+@mixin pseudo-after($content: "") {
 	&:after {
-		@include pseudo-element-default;
+		@include pseudo-element-default($content);
 		@content;
 	}
 }
@@ -414,6 +418,28 @@
 		opacity: 1;
 		visibility: visible;
 	}
+}
+
+@mixin visually-hidden {
+	border: 0;
+	clip: rect(1px, 1px, 1px, 1px);
+	height: 1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute !important;
+	width: 1px;
+}
+
+
+
+
+
+/*------------------------------------*\
+	WEBKIT_SHARED
+\*------------------------------------*/
+
+@mixin webkit-tap-highlight-color {
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 

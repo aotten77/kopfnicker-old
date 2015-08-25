@@ -1,10 +1,21 @@
 /*------------------------------------*\
-	$INPUT
+	INPUT
 \*------------------------------------*/
 
 /**
- * GENERIC.............................Variables/Placeholder
- * INPUT_SELECT........................<select class="input-selct">
+ * ----------------------------------------------------------------------------
+ *  form input elements
+ * ----------------------------------------------------------------------------
+ *
+ *
+ * CONTENTS
+ *
+ * GENERIC
+ * %_validation........................validation properties
+ *
+ * COMPONENTS
+ * INPUT_FILE..........................<input class="input-file" />
+ * INPUT_SELECT........................<select class="input-select">
  * INPUT_TEXT..........................<input class="input-text" />
  * INPUT_TEXTAREA......................<textarea class="input-textarea">
 **/
@@ -14,13 +25,14 @@
 
 
 /*------------------------------------*\
-	$GENERIC
+	GENERIC
 \*------------------------------------*/
 
-%validation {
+%_validation {
 	&.error {
 		border-color: $theme-color-error;
 	}
+
 
 	&.valid {
 		border-color: $theme-color-valid;
@@ -30,23 +42,37 @@
 
 
 
+
 /*------------------------------------*\
-	$INPUT_SELECT
+	INPUT_FILE
+\*------------------------------------*/
+
+.input-file {
+	@extend %_validation;
+}
+
+
+
+
+
+/*------------------------------------*\
+	INPUT_SELECT
 \*------------------------------------*/
 
 .input-select {
-	@extend %validation;
+	@extend %_validation;
 }
 
 
 
 
+
 /*------------------------------------*\
-	$INPUT_TEXT
+	INPUT_TEXT
 \*------------------------------------*/
 
 .input-text {
-	@extend %validation;
+	@extend %_validation;
 }
 
 
@@ -54,21 +80,11 @@
 
 
 /*------------------------------------*\
-	$INPUT_TEXTAREA
+	INPUT_TEXTAREA
 \*------------------------------------*/
 
 .input-textarea {
-	@extend %validation;
-
-	height: auto;
-	padding: {
-		bottom: $space-quarter;
-		top: $space-quarter;
-	}
-
-	@include bp-m {
-		padding-right: $pad-double;
-	}
+	@extend %_validation;
 }
 
 

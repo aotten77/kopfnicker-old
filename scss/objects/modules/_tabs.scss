@@ -1,33 +1,33 @@
 /*------------------------------------*\
-	$TABS
+	TABS
 \*------------------------------------*/
 
 /**
- * GENERIC.............................Variables/Placeholder
- * .....%tab-active
- * .....%tab-control-checked
- * .....@for... (%tab-control-checked)
- * TABS................................Tab-Navigation
-**/
-
-/**
- * Registerkarten-Navigation
+ * ----------------------------------------------------------------------------
+ *  tabbed-navigation
+ *  navigate seperated contents on a single page.
+ * ----------------------------------------------------------------------------
  *
-	<div class="tabs">
-		<input type="radio" id="tab1" name="tab" class="tab-control" checked />
-		<input type="radio" id="tab2" name="tab" class="tab-control" />
-		<span class="tab-panel">
-			<label for="tab1" class="tab" data-jmname="tab-selected" data-jmdominit="true">$tab-label$</label>
-			<label for="tab2" class="tab" data-jmname="tab-selected">$tab-label</label>
-		</span>
-		<div class="tab-content">
-			$tab-content$
-		</div>
-		<div class="tab-content">
-			$tab-content$
-		</div>
-	</div>
  *
+ * CONTENTS
+ *
+ * SETTINGS
+ * $_tab-height........................sets the height of each tab
+ * $_tab-indenting.....................controls the indenting of the first tab
+ *
+ * TOOLS
+ * @_tabs..............................generate the tabs
+ * @_tab-active........................styling for the active tab
+ *
+ * COMPONENTS
+ * .tabs...............................tabs container <div>
+ *  .tab-links.........................tabs inner container <ul>
+ *   .tab..............................one tab <li>
+ *    .tab-handle......................handler for "tab-control" <label>
+ *    .tab-panel.......................tab's content section
+ *    .tab-control.....................helper to set the active state <input type="radio" />
+ *
+ * HTML SNIPPET
 **/
 
 
@@ -35,44 +35,41 @@
 
 
 /*------------------------------------*\
-	$GENERIC
+	SETTINGS
 \*------------------------------------*/
 
-// Active Tab
-@mixin tab-active {
-	@include move(0, 0, 0, relative);
-}
+$_tab-height:		$ui-height + $pad;
+$_tab-indenting:	$pad-and-half;
 
-// Extend %tab-control-checked if "tab-control" is checked
-$tabs:		5;
-$tabs_i:	1;
 
-@for $tabs_i from 1 through $tabs {
-	.tab-control {
-		&:nth-of-type(#{$tabs_i}) {
-			&:checked {
-				&~ .tab-content {
-					&:nth-of-type(#{$tabs_i}) {
-						display: block;
-					}
-				}
 
-				&~ .tab-panel {
-					.tab {
-						&:last-of-type {
-							@media screen and (max-width: $bp-m) {
-								background-color: $theme-tab-hover-bg;
-								border: 0;
-								color: $theme-tab-active-fg;
-							}
+
+
+/*------------------------------------*\
+	TOOLS
+\*------------------------------------*/
+
+@mixin _tabs($_tabs-total, $_tabs-cols-m, $_tabs-cols-l) {
+	$_cols-l:			$_tabs-cols-l;		// How many columns for bp-l
+	$_cols-m:			$_tabs-cols-m;		// How many columns for bp-m
+	$_total:			$_tabs-total;		// How many tabs are displayed
+	$_total-counter:	$_total + 1;		// Internal variable to decrease total number in a loop
+
+	
+	@for $i from 1 through $_total {
+		&:nth-of-type(#{$i}):nth-last-of-type(#{$_total-counter - $i}) {
+			@for $j from 1 through $_total {
+				&:nth-child(#{$j}) {
+					&> .tab-handle {
+						@include bp-m {
+							@include column($_cols-m);
+							left: ((($total-width*(((($gutter-width+$column-width)*$_cols-m)-$gutter-width) / gridsystem-width($columns)))) + .1) * ($j - 1);
 						}
 
-						&:nth-of-type(#{$tabs_i}) {
-							@include bp-m {
-								@include tab-active;
-								background-color: $theme-tab-active-bg;
-								color: $theme-tab-active-fg;
-							}
+
+						@include bp-l {
+							@include column($_cols-l);
+							left: ((($total-width*(((($gutter-width+$column-width)*$_cols-l)-$gutter-width) / gridsystem-width($columns)))) + .1) * ($j - 1);
 						}
 					}
 				}
@@ -82,135 +79,174 @@ $tabs_i:	1;
 }
 
 
+@mixin _tab-active {
+	@include move(0, 0, 0, absolute);
+}
+
+
 
 
 
 /*------------------------------------*\
-	$TABS
+	COMPONENTS
 \*------------------------------------*/
 
+// tabs container
+// <div>
 .tabs {
 	@extend %element-default;
+	background-color: $theme-accordion-bg;
+	color: $theme-accordion-fg;
 
-	// Tab Container
-	&> .tab-panel {
-		display: block;
-		margin: 0 auto;
-		overflow: hidden;
-		padding-top: $default-inner-spacing;
-		width: 95%;
+	
+	@include bp-m {
+		background-color: transparent;
+	}
 
+	
+	// tabs inner container
+	// <ul>
+	.tab-links {
 		@include bp-m {
-			@include clearfix;
-			background-color: $theme-tabs-bg;
-		}
+			margin-top: $_tab-height + $pad-half;
+			position: relative;
 
-		// Ein Tab <label>
-		.tab {
-			@extend %element-inner-default;
-			box-shadow: 0 -5px 10px 0 rgba($theme-shadow, .7);
-			background-color: $theme-tab-bg;
-			color: $theme-tab-fg;
-			margin-top: -($space-half);
-			padding: {
-				bottom: $space-three-quarter;
-				top: $space-three-quarter;
+			@include pseudo-before {
+				@include absolute(-($_tab-height + $pad-half), $pad, 0, $pad);
+				background-color: $theme-tabs-bg;
 			}
-			text-align: center;
+		}
+	}
 
+	
+	// one tab
+	// <li>
+	.tab {
+		// define tabs
+		@include _tabs(2, 5, 4);
+		@include _tabs(3, 4, 3);
+		@include _tabs(4, 3, 3);
+		@include _tabs(5, 2.5, 2.5);
+
+		
+		// handler for "tab-control"
+		// <label>
+		&> .tab-handle {
+			@extend %toggle-subject;
+			background-color: $theme-accordion-handle-bg;
+			color: $theme-accordion-handle-fg;
+			display: block;
+			font-family: $font-btn;
+			margin-bottom: 3px;
+			position: relative;
+			user-select: none;
+			
 			@include bp-m {
-				@include move(0, $space-half, 0, relative);
-				box-shadow: none;
-				margin: 0 0 0 1px !important;
-				padding-bottom: $space;
+				@include absolute(0, null, null, null);
+				@include element-indent;
+				@include move(0, $pad-three-quarter, 0, absolute);
+				background-color: $theme-tab-bg;
+				color: $theme-tab-fg;
+				height: $_tab-height;
+				margin: {
+					left: $_tab-indenting !important;
+					top: -($_tab-height);
+				}
+				padding: {
+					bottom: $space-three-quarter;
+					top: $space-three-quarter;
+				}
+				text-align: center;
 				transition:	background-color $default-transition-duration $default-transition-function,
 							color $default-transition-duration $default-transition-function,
 							transform $default-transition-duration $default-transition-function;
+				z-index: 1;
 			}
 
-			&:nth-of-type(1):nth-last-of-type(2),
-			&:nth-of-type(2):nth-last-of-type(1) {
+			@include pseudo-after {
 				@include bp-m {
-					@include column(5);
-				}
-
-				@include bp-l {
-					@include column(4);
+					background: transparent !important;
+					border: transparent !important;
 				}
 			}
-
-			&:nth-of-type(1):nth-last-of-type(3),
-			&:nth-of-type(2):nth-last-of-type(2),
-			&:nth-of-type(3):nth-last-of-type(1) {
+						
+			@include pseudo-before {
+				background-color: $theme-accordion-icon-bg;
+				
 				@include bp-m {
-					@include column(4);
-				}
-
-				@include bp-l {
-					@include column(3);
+					background: transparent !important;
+					border: transparent !important;
 				}
 			}
-
-			&:nth-of-type(1):nth-last-of-type(4),
-			&:nth-of-type(2):nth-last-of-type(3),
-			&:nth-of-type(3):nth-last-of-type(2),
-			&:nth-of-type(4):nth-last-of-type(1) {
-				@include bp-m {
-					@include column(3);
-				}
-
-				@include bp-l {
-					@include column(3);
-				}
-			}
-
-			&:nth-of-type(1):nth-last-of-type(5),
-			&:nth-of-type(2):nth-last-of-type(4),
-			&:nth-of-type(3):nth-last-of-type(3),
-			&:nth-of-type(4):nth-last-of-type(2),
-			&:nth-of-type(5):nth-last-of-type(1) {
-				@include bp-m {
-					@include column(2.5);
-				}
-			}
-
+						
 			&:hover {
+				background-color: $theme-accordion-active-bg;
+				color: $theme-accordion-active-fg;
+
 				@include bp-m {
-					@include tab-active;
+					@include _tab-active;
 					background-color: $theme-tab-hover-bg;
 					color: $theme-tab-hover-fg;
 				}
-			}
 
-			&:first-of-type {
-				margin-top: 0;
-
-				@include bp-m {
-					margin-left: $dist !important;
+				@include pseudo-before {
+					background-color: $theme-accordion-icon-active-bg;
 				}
 			}
 		}
-	}
 
-	// Inhalt des Tabs.
-	&> .tab-content {
-		@extend %element-nested-default;
-		background-color: $theme-tab-content-bg;
-		border: 1px solid $theme-tabs-bg;
-		clear: both;
-		color: $theme-tab-content-fg;
-		display: none;
-		padding: {
-			bottom: $default-spacing;
-			top: $default-spacing;
+
+		// tab's content section
+		&> .tab-panel {
+			@extend %toggle-content;
+			background-color: $theme-accordion-content-bg;
+						
+			@include bp-m {
+				background-color: $theme-tab-content-bg;
+				border: 1px solid $theme-tabs-bg;
+				clear: both;
+				color: $theme-tab-content-fg;
+				display: none;
+				position: relative;
+				z-index: 2;
+			}
 		}
-		position: relative;
-	}
 
-	// Dient zum Steuern der einzelnen Tabs und ist ein Radiobutton <input>
-	&> .tab-control {
-		opacity: 0;
-		position: absolute;
+		
+		// helper to set the active state
+		// <input type="radio" />
+		.tab-control {
+			opacity: 0;
+			position: absolute;
+						
+			&:checked {
+				&~ .tab-handle {
+					@extend %toggle-subject-visible;
+					background-color: $theme-accordion-active-bg;
+					color: $theme-accordion-active-fg;
+
+					@include bp-m {
+						@include _tab-active;
+						background-color: $theme-tab-active-bg;
+						color: $theme-tab-active-fg;
+					}
+					
+					@include pseudo-before {
+						background-color: $theme-accordion-icon-active-bg;
+					}
+				}
+				
+
+				&~ .tab-panel {
+					@extend %toggle-content-visible;
+					
+					@include bp-m {
+						@include element-indent;
+						display: block;
+					}
+				}
+			}
+		}
 	}
 }
 
@@ -219,5 +255,26 @@ $tabs_i:	1;
 
 
 /*------------------------------------*\
-	
+	HTML SNIPPET
 \*------------------------------------*/
+
+/*
+<div class="tabs">
+	<ul class="tab-links">
+		<li class="tab">
+			<input class="tab-control" id="tab1" name="tab" type="radio" checked />
+			<label class="tab-handle" for="tab1">[...]</label>
+			<section class="tab-panel">
+				[...]
+			</section>
+		</li>
+		<li class="tab">
+			<input class="tab-control" id="tab2" name="tab" type="radio" />
+			<label class="tab-handle" for="tab2">[...]</label>
+			<section class="tab-panel">
+				[...]
+			</section>
+		</li>
+	</ul>
+</div>
+*/

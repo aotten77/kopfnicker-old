@@ -4,8 +4,9 @@
 
 /**
  * GENERIC.............................Variables/Placeholder
- * .....%label-option
- * INPUT_OPTION........................<input type="checkbox/radio" />
+ * .....$input-option-size-factor
+ * .....$input-option-size
+ * .....%input-option
  * INPUT_CHECKBOX......................Custom Checkbox
  * .....checkbox
  * .....checkbox-stable
@@ -25,9 +26,8 @@
 $input-option-size-factor: 1.7;
 $input-option-size: $ui-height * 2 / $input-option-size-factor;
 
-%label-option {
-	margin-top: -3px;
-	margin-bottom: -6px;
+%input-option {
+	@include clearfix;
 
 	.error-msg {
 		@include absolute('', '', 0, -($pad-half));
@@ -36,57 +36,61 @@ $input-option-size: $ui-height * 2 / $input-option-size-factor;
 			margin-bottom: $pad-and-half;
 		}
 	}
-}
 
+	.input-option {
+		@include visually-hidden;
 
-
-
-
-/*------------------------------------*\
-    $INPUT_OPTION
-\*------------------------------------*/
-
-.input-option {
-	border: 0;
-	clip: rect(1px, 1px, 1px, 1px);
-	height: 1px;
-	outline: 0;
-	overflow: hidden;
-	padding: 0;
-	position: absolute !important;
-	width: 1px;
-
-	&~ {
-		.label-text {
+		&~ .label-text {
 			min-height: $input-option-size;
 			padding: $input-option-size / ($input-option-size-factor + 2) 0 0 (($input-option-size / $input-option-size-factor) + $pad-three-quarter);
 
 			&:after {
 				@include pseudo-element-default;
-				@include absolute((($input-option-size - ($input-option-size / ($input-option-size-factor * $input-option-size-factor))) / 2), '', '', ((($input-option-size / $input-option-size-factor) - ($input-option-size / ($input-option-size-factor * $input-option-size-factor))) / 2));
-				background-color: $theme-input-bg;
-				border: 1px solid $theme-input-bg;
-				height: $input-option-size / ($input-option-size-factor * $input-option-size-factor);
-				transition: background-color $default-transition-duration $default-transition-function;
-				width: $input-option-size / ($input-option-size-factor * $input-option-size-factor);
+				@include vertical-align(absolute);
+				color: $theme-color-alpha;
+				content: "L";
+				font-size: $input-option-size / 2;
+				height: $input-option-size / $input-option-size-factor;
+				left: 0;
+				line-height: 1;
+				opacity: 0;
+				text-align: center;
+				transform: scaleX(-1) rotate(-35deg) translate(0, -48%);
+				transform-origin: top;
+				transition: opacity $default-transition-duration $default-transition-function;
+				width: $input-option-size / $input-option-size-factor;
 			}
 
 			&:before {
 				@include pseudo-element-default;
-				@include absolute((($input-option-size - ($input-option-size / $input-option-size-factor)) / 2), '', '', 0);
+				@include absolute((($input-option-size - ($input-option-size / $input-option-size-factor)) / 2), '', '', -1px);
 				background-color: $theme-input-bg;
 				border: 1px solid $theme-input-border;
 				height: $input-option-size / $input-option-size-factor;
-				transition: border-color $default-transition-duration $default-transition-function;
+				transition: background-color $default-transition-duration $default-transition-function;
 				width: $input-option-size / $input-option-size-factor;
 			}
 		}
-	}
 
-	&:focus {
-		&~ .label-text {
-			&:before {
-				border-color: $theme-color-hint;
+		&:checked {
+			&~ .label-text {
+				&:after {
+					opacity: 1;
+				}
+
+				&:before {
+					background-color: $theme-color-beta;
+				}
+			}
+		}
+
+		&:focus {
+			&:not(:checked) {
+				&~ .label-text {
+					&:before {
+						border-color: $theme-color-hint;
+					}
+				}
 			}
 		}
 	}
@@ -101,17 +105,7 @@ $input-option-size: $ui-height * 2 / $input-option-size-factor;
 \*------------------------------------*/
 
 .checkbox {
-	@extend %label-option;
-
-	.input-option {
-		&:checked {
-			&~ .label-text {
-				&:after {
-					background: transparent url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAJCAYAAAALpr0TAAAAJElEQVQYlWNgIA78J1YRQYU0VoQugNMkZAmC1v0nRhEuJ6AAAPkhE+0fnheMAAAAAElFTkSuQmCC") no-repeat scroll center center;
-				}
-			}
-		}
-	}
+	@extend %input-option;
 }
 
 .checkbox-stable {
@@ -129,26 +123,11 @@ $input-option-size: $ui-height * 2 / $input-option-size-factor;
 \*------------------------------------*/
 
 .radiobutton {
-	@extend %label-option;
-	@include indent(padding, .5);
+	@extend %input-option;
 
 	.label-text {
-		&:after {
-			border-radius: 50%;
-		}
-
 		&:before {
 			border-radius: 50%;
-		}
-	}
-
-	.input-option {
-		&:checked {
-			&~ .label-text {
-				&:after {
-					background-color: $theme-input-fg;
-				}
-			}
 		}
 	}
 }

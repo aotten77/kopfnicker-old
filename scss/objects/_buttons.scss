@@ -18,19 +18,17 @@
 \*------------------------------------*/
 
 %button {
+	@extend %clickable;
 	appearance: none;
-	cursor: pointer;
 	display: block;
 	font-family: $font-btn;
 	line-height: 1;
-	min-height: $ui-height;
+	height: $ui-height;
 	overflow: hidden;
-	padding: $space-quarter $default-padding;
+	padding: $space-half $default-padding 0;
 	position: relative;
 	text-align: center;
-	text-decoration: none;
 	transition: background-color $default-transition-duration $default-transition-function;
-	user-select: none;
 	white-space: nowrap;
 	width: 100%;
 
