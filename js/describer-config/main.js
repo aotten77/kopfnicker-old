@@ -10,7 +10,7 @@
  * Released under the MIT license
  */
 var pathToJQuery;
-var buildPath = (window.dc.loadUnminifyVersion) ? '' : 'build/';
+var buildPath = (window.dc.config.loadUnminifyVersion) ? '' : 'build/';
 if('querySelector' in document && 'localStorage' in window && 'addEventListener' in window){
 	pathToJQuery = buildPath+'describer-core/libs/jquery-2.1.0';
 }else{
@@ -129,12 +129,18 @@ require.config({
 	locale: document.getElementsByTagName('html')[0].getAttribute('lang')
 });
 
-
 require(['jquery', '_config'], function require_jquery($){
 	// need jquery
-	require([ 'core', 'jquery_ba-dotimeout' ], function require_helpers(){
+	require(['core'], function require_core(){
 		// DomReady
 		$(function domReady(){
+
+			if(window.dc.client.userOS === 'iOS' && Number(dc.client.userOSver.charAt(0)) < 8){
+				require(['viewport-units-buggyfill'], function(vub){
+					vub.init();
+				});
+			}
+
 			var $body = $('body');
 
 			// -----------------------------------------------------
@@ -146,27 +152,22 @@ require(['jquery', '_config'], function require_jquery($){
 
 			// Jedes Input(ausgenommen type="submit"), texarea und select feuert ein Event "checkValidation" wenn focus, change oder blur getriggert wird.
 			// TODO Andreas evtl. obsolate da hier auch mit jmtrigger:checkValidation gearbeitet werden kann. Prüfen. Evtl. dominit="true" und blur, focus, jmtrigger:checkValidtion in den Config-Event-Stirng
-			$body.on(   'blur ' +
-						'change ' +
-						'focus ' +
-						'checkValidation', 'form[data-jmname="form"]', jmHF.eventDelegationTrigger);
+			$body.on('blur change focus checkValidation', 'form[data-jmname="form"]', dc.eventflow.eventDelegationTrigger);
 
 			// Change-Listener für select, textarea und input ohne input[type="radio"] zur initialisierung und Aufruf der change-Funktion des Plugins
-			$body.on('change',  'select[data-jmname],' +
-								'textarea[data-jmname],'+
-								'input[data-jmname]:not(input[type="radio"][data-jmname])', jmHF.eventDelegationTrigger);
+			$body.on('change',  'select[data-jmname], textarea[data-jmname],input[data-jmname]:not(input[type="radio"][data-jmname])', dc.eventflow.eventDelegationTrigger);
 
 			// Change-Listenerinput[type="radio"]
-			$body.on('change',  'input[type="radio"][data-jmname]', jmHF.eventDelegationTriggerForRadios);
+			$body.on('change',  'input[type="radio"][data-jmname]', dc.eventflow.eventDelegationTriggerForRadios);
 
 
 			//---------------- Listener for click --------------------------------------------------------
 
-			$body.on('click', '[data-jmname]:not(label[data-jmname], a[data-jmname], form[data-jmname])', jmHF.eventDelegationTrigger);
+			$body.on('click dcpointer', '[data-jmname]:not(label[data-jmname], a[data-jmname], form[data-jmname])', dc.eventflow.eventDelegationTrigger);
 
-			$body.on('click', 'a[data-jmname]', jmHF.eventDelegationTriggerForATags);
+			$body.on('click dcpointer', 'a[data-jmname]', dc.eventflow.eventDelegationTriggerForATags);
 
-			$body.on('click', 'label[data-jmname]', jmHF.eventDelegationTriggerForLabels);
+			$body.on('click dcpointer', 'label[data-jmname]', dc.eventflow.eventDelegationTriggerForLabels);
 
 
 			// -----------------------------------------------------
@@ -174,13 +175,19 @@ require(['jquery', '_config'], function require_jquery($){
 			// -----------------------------------------------------
 
 
-			$body.on('dominit', '[data-jmname]', jmHF.eventDelegationTriggerForDomInit);
+			$body.on('dominit', '[data-jmname]', dc.eventflow.eventDelegationTriggerForDomInit);
 
 			// Change-Listener für select, input[type="radio"] und input[type="checkbox"] zur initialisierung und Aufruf der change-Funktion des Plugins
-			$body.on('jmtrigger', '[data-jmname]', jmHF.eventDelegationTrigger);
+			$body.on('jmtrigger', '[data-jmname]', dc.eventflow.eventDelegationTrigger);
 
 
-			$(window).on('resize', jmHF.checkOrientation);
+			$(window).on('resize', dc.helper.checkOrientationAndTriggerDcResize);
+
+			$body.on('touchstart.dctouch MSPointerDown.dctouch','.js-touch',  dc.pointer.start);
+			$body.on('touchmove.dctouch MSPointerMove.dctouch','.js-touch',  dc.pointer.move);
+			$body.on('touchend.dctouch MSPointerUp.dctouch','.js-touch',  dc.pointer.end);
+			//			//$body.on('click.pointer', dc.pointerEnd);
+
 			// -----------------------------------------------------
 			// -------- ausführen von Domready-Funktionen ----------
 			// -----------------------------------------------------
@@ -191,25 +198,18 @@ require(['jquery', '_config'], function require_jquery($){
 			// Initialisiert die Elemente, die mit dem Attribut data-jmdominit="true" versehen sind
 			$body.triggerSelfexecObj();
 
-			// Externe Lib. Sie wird verwendet, um ein delay von 300ms bei Klick auf Touch-Devices zu unterdrücken.
-			// Die Verzögerung entsteht durch das warte des Device auf einen evtl. doppleClick, der ein Zoomen in die Seite auslöst.
-			// Touchstart -> Klick
-			//FastClick.attach(document.body);
-
 			// Führt die im DomReadyObject hinterlegten Funktionen aus
 			execDomReadyObject();
 
-			// Trigger jmtrigger:hash on element with id === hash
-			if(window.location.hash !== ''){
-				$(window.location.hash).jmtrigger('hash');
-			}
+			dc.domready.checkUrl();
+			dc.helper.setDevicePerfForParallax();
 
 			// Trigger Picturefill um die entsprechenden Images in die Div-Container zu injecten
 			try{picturefill();}catch(e){}
 
-			if(dc.debug){
-				jmHF.checkConfigJS();
-				jmHF.checkJmNameElementenOnNecessaryDominitAttribut();
+			if(dc.config.debug){
+				dc.dev.checkConfigJS();
+				dc.dev.checkJmNameElementenOnNecessaryDominitAttribut();
 			}
 		});
 	});
