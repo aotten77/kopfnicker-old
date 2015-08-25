@@ -89,6 +89,7 @@ require.config({
 		//'fixedsticky'                                       : buildPath+'describer-more/plugins/fixedsticky',
 		//'jquery_mousewheel'                                 : buildPath+'describer-more/plugins/jquery.mousewheel',
 		'md5'                                               : buildPath+'describer-add-ons/plugins/md5',
+		'viewport-units-buggyfill'                          : buildPath+'describer-add-ons/plugins/viewport-units-buggyfill',
 		//'video_4_10_2'                                      : buildPath+'describer-more/plugins/video.4.10.2',
 		//'videojs-youtube'                                   : buildPath+'describer-more/plugins/youtube',
 
