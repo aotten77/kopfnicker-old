@@ -651,7 +651,7 @@ define(function(){
 		},
 
 		{
-			jmname  : 'togglebox',
+			jmname  : 'togglebox, togglebox-test',
 			jmplugin: 'actions.ajax|actions.toggle_1|actions.toggle_2',
 			jmconfig: [
 				{
@@ -762,7 +762,7 @@ define(function(){
 				/*'width': '853',
 				'height': '480'*/
 			}
-		}
+		},
 
 // W
 
@@ -771,5 +771,66 @@ define(function(){
 // Y
 
 // Z
+
+		{
+			jmname   : 'z-test1, z-test1-1',
+			jmplugin: 'actions.add_1|actions.add_2|actions.add_3|actions.add_4',
+			jmconfig : [
+				{
+					'event'    : 'click',
+					'datatype' : 'text',
+					'data'     : 'click',
+					'relatedTo': '.a'
+				},
+				{
+					'event'    : 'click',
+					'datatype' : 'text',
+					'data'     : 'click',
+					'relatedTo': '.b'
+				},
+				{
+					'event'    : 'click',
+					'datatype' : 'text',
+					'data'     : 'click',
+					'relatedTo': '.c'
+				},
+				{
+					'event'    : 'click',
+					'datatype' : 'text',
+					'data'     : 'click',
+					'relatedTo': '.d'
+				}
+			]
+		},
+		{
+			jmname   : 'z-test2, z-test2-1',
+			jmplugin: 'actions.add_1|actions.add_2|actions.add_3|actions.add_4',
+			jmconfig : [
+				{
+					'event'    : 'click',
+					'datatype' : 'text',
+					'data'     : 'a',
+					'relatedTo': '.a'
+				},
+				{
+					'event'    : 'click',
+					'datatype' : 'text',
+					'data'     : 'b',
+					'relatedTo': '.b'
+				},
+				{
+					'event'    : 'click',
+					'datatype' : 'text',
+					'data'     : 'c',
+					'relatedTo': '.c'
+				},
+				{
+					'event'    : 'click',
+					'datatype' : 'text',
+					'data'     : 'd',
+					'relatedTo': '.d'
+				}
+			]
+		}
 	];
 });
